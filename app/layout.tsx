@@ -1,8 +1,22 @@
 import type { Metadata, Viewport } from "next";
+import { Bebas_Neue, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FloatingCartButton from "@/components/FloatingCartButton";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bebas",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -10,7 +24,7 @@ export const metadata: Metadata = {
   ),
   title: "Tacos & Smash — Original French Food · Meknès",
   description:
-    "Tacos, Smash Burgers & plus à Meknès. ⭐ 4,8/5 sur Google. Commande par WhatsApp, livraison sans contact, cash à la livraison.",
+    "Tacos français & Smash Burgers à Meknès. ⭐ 4,8/5 sur Google (220 avis). Commande par WhatsApp, livraison sans contact, cash à la livraison.",
   keywords: [
     "tacos",
     "smash burger",
@@ -18,6 +32,7 @@ export const metadata: Metadata = {
     "french tacos",
     "livraison",
     "restaurant meknes",
+    "street food",
   ],
   openGraph: {
     title: "Tacos & Smash — Meknès",
@@ -34,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1a1a1a",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
 };
@@ -45,12 +60,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
-      <body className="min-h-screen bg-brand-black font-body text-white antialiased">
+    <html lang="fr" className={`${bebas.variable} ${inter.variable}`}>
+      <body className="min-h-screen overflow-x-hidden bg-ink-900 font-body text-paper antialiased">
         <Navbar />
-        <main className="min-h-[calc(100vh-4rem)]">{children}</main>
+        <main>{children}</main>
         <Footer />
-        <FloatingCartButton />
+        <WhatsAppFloat />
       </body>
     </html>
   );

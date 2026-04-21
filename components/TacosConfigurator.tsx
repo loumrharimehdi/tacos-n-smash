@@ -3,17 +3,16 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ShoppingBag, ArrowRight, ArrowLeft } from "lucide-react";
+import { Check, ShoppingBag, ArrowRight, ArrowLeft, Flame } from "lucide-react";
 import Link from "next/link";
-import {
-  TACOS_SIZES,
-  TACOS_MEATS,
-  TACOS_SAUCES,
-} from "@/lib/menu";
+import { TACOS_SIZES, TACOS_MEATS, TACOS_SAUCES } from "@/lib/menu";
 import { useCart } from "@/lib/store";
+import PriceCounter from "@/components/PriceCounter";
 import type { TacosSize } from "@/lib/types";
 
-type Step = 0 | 1 | 2 | 3;
+type Step = 0 | 1 | 2;
+
+const STEP_LABELS = ["Taille", "Viande", "Sauce"];
 
 export default function TacosConfigurator() {
   const [step, setStep] = useState<Step>(0);
@@ -36,6 +35,7 @@ export default function TacosConfigurator() {
     [meats]
   );
   const total = sizeDef.price + meatExtra;
+  const progress = ((step + (step === 2 && sauce ? 1 : 0)) / 3) * 100;
 
   function toggleMeat(id: string) {
     if (meats.includes(id)) {
@@ -49,7 +49,6 @@ export default function TacosConfigurator() {
 
   function handleSizeChange(next: TacosSize) {
     setSize(next);
-    // Trim meats that exceed new size limit
     const nextMax = TACOS_SIZES.find((s) => s.id === next)!.meats;
     if (meats.length > nextMax) setMeats(meats.slice(0, nextMax));
   }
@@ -63,115 +62,146 @@ export default function TacosConfigurator() {
 
     addItem({
       id: `tacos-${size}-${meats.join("-")}-${sauce}-${Date.now()}`,
-      name: `Tacos ${sizeDef.label} (${maxMeats} viande${maxMeats > 1 ? "s" : ""})`,
+      name: `Tacos ${sizeDef.label}`,
       price: total,
       image: sizeDef.image,
       options: `Viande : ${meatLabels || "—"} · Sauce : ${sauceLabel}`,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
-    // Reset
     setMeats([]);
     setSauce("");
     setStep(0);
   }
 
   const canNext =
-    (step === 0) ||
+    step === 0 ||
     (step === 1 && meats.length === maxMeats) ||
     (step === 2 && !!sauce);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_380px]">
+    <div className="grid gap-10 lg:grid-cols-[1fr_400px]">
       {/* LEFT: Steps */}
       <div>
-        {/* Step indicator */}
-        <div className="mb-6 flex items-center gap-2">
-          {["Taille", "Viande", "Sauce"].map((label, i) => {
-            const active = step === i;
-            const done = step > i;
-            return (
+        {/* Progress bar */}
+        <div className="mb-8">
+          <div className="flex items-end justify-between">
+            <div>
+              <div className="kicker">Étape {step + 1} / 3</div>
+              <h3 className="mt-1 font-display text-3xl uppercase leading-none tracking-wide text-white sm:text-4xl">
+                {STEP_LABELS[step]}
+              </h3>
+            </div>
+            <div className="text-right">
+              <div className="text-xs uppercase tracking-widest text-white/50">
+                Progression
+              </div>
+              <div className="font-display text-2xl text-brand-yellow">
+                {Math.round(progress)}%
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-brand-yellow-dark via-brand-yellow to-brand-yellow-light shadow-glow"
+              initial={false}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+            />
+          </div>
+          <div className="mt-3 flex items-center gap-2">
+            {STEP_LABELS.map((label, i) => (
               <div key={label} className="flex flex-1 items-center gap-2">
                 <div
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-colors ${
-                    done
-                      ? "bg-brand-green text-white"
-                      : active
-                        ? "bg-brand-yellow text-brand-black"
-                        : "bg-white/10 text-white/50"
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black transition-all ${
+                    step > i
+                      ? "bg-brand-yellow text-ink-900"
+                      : step === i
+                        ? "bg-brand-yellow/20 text-brand-yellow ring-2 ring-brand-yellow"
+                        : "bg-white/5 text-white/40"
                   }`}
                 >
-                  {done ? <Check size={14} /> : i + 1}
+                  {step > i ? <Check size={13} /> : i + 1}
                 </div>
-                <div
-                  className={`text-xs font-semibold uppercase tracking-wider ${
-                    active ? "text-white" : "text-white/50"
+                <span
+                  className={`hidden text-xs font-semibold uppercase tracking-wider sm:inline ${
+                    step === i ? "text-white" : "text-white/40"
                   }`}
                 >
                   {label}
-                </div>
-                {i < 2 && (
-                  <div
-                    className={`h-px flex-1 ${
-                      done ? "bg-brand-green" : "bg-white/10"
-                    }`}
-                  />
-                )}
+                </span>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
+        {/* Step content */}
         <AnimatePresence mode="wait">
           {step === 0 && (
             <motion.div
               key="size"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 8 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-black">1. Choisis la taille</h2>
-              <p className="mt-1 text-white/60">
+              <h2 className="font-display text-3xl uppercase tracking-wide">
+                Choisis la taille
+              </h2>
+              <p className="mt-2 text-white/60">
                 La taille détermine le nombre de viandes incluses.
               </p>
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                {TACOS_SIZES.map((s) => {
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                {TACOS_SIZES.map((s, i) => {
                   const on = size === s.id;
                   return (
-                    <button
+                    <motion.button
                       key={s.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 + i * 0.08 }}
                       onClick={() => handleSizeChange(s.id)}
-                      className={`relative overflow-hidden rounded-2xl border-2 p-4 text-left transition-all ${
+                      whileHover={{ y: -4 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`group relative overflow-hidden rounded-3xl border-2 p-4 text-left transition-all ${
                         on
-                          ? "border-brand-yellow bg-brand-yellow/10"
-                          : "border-white/10 bg-white/5 hover:border-white/20"
+                          ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
+                          : "border-white/10 bg-ink-800 hover:border-white/25"
                       }`}
                     >
-                      <div className="relative mx-auto aspect-square w-full max-w-[140px] overflow-hidden rounded-xl">
+                      <div className="relative mx-auto aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl">
                         <Image
                           src={s.image}
                           alt={s.label}
                           fill
-                          sizes="140px"
-                          className="object-cover"
+                          sizes="160px"
+                          className={`object-cover transition-transform duration-500 ${
+                            on ? "scale-[1.04]" : "group-hover:scale-[1.03]"
+                          }`}
                         />
                       </div>
-                      <div className="mt-3 flex items-baseline justify-between">
-                        <span className="text-base font-black">{s.label}</span>
-                        <span className="font-black text-brand-yellow">
+                      <div className="mt-4 flex items-baseline justify-between">
+                        <span className="font-display text-2xl uppercase tracking-wide text-white">
+                          {s.label}
+                        </span>
+                        <span className="font-display text-xl text-brand-yellow">
                           {s.price} DH
                         </span>
                       </div>
-                      <div className="text-xs text-white/60">
+                      <div className="mt-1 text-xs uppercase tracking-widest text-white/50">
                         {s.meats} viande{s.meats > 1 ? "s" : ""}
                       </div>
                       {on && (
-                        <div className="absolute right-2 top-2 rounded-full bg-brand-yellow p-1 text-brand-black">
-                          <Check size={14} />
-                        </div>
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-yellow text-ink-900 shadow-glow"
+                        >
+                          <Check size={14} strokeWidth={3} />
+                        </motion.div>
                       )}
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -181,35 +211,57 @@ export default function TacosConfigurator() {
           {step === 1 && (
             <motion.div
               key="meat"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 8 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-black">
-                2. Choisis {maxMeats === 1 ? "ta viande" : `tes ${maxMeats} viandes`}
+              <h2 className="font-display text-3xl uppercase tracking-wide">
+                {maxMeats === 1 ? "Choisis ta viande" : `Choisis tes ${maxMeats} viandes`}
               </h2>
-              <p className="mt-1 text-white/60">
-                {meats.length} / {maxMeats} sélectionné{meats.length > 1 ? "s" : ""}
+              <p className="mt-2 text-white/60">
+                <span className="font-semibold text-brand-yellow">
+                  {meats.length} / {maxMeats}
+                </span>{" "}
+                sélectionné{meats.length > 1 ? "s" : ""}
               </p>
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-                {TACOS_MEATS.map((m) => {
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                {TACOS_MEATS.map((m, i) => {
                   const on = meats.includes(m.id);
                   const disabled = !on && meats.length >= maxMeats && maxMeats > 1;
                   return (
-                    <button
+                    <motion.button
                       key={m.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.03 + i * 0.04 }}
                       onClick={() => toggleMeat(m.id)}
                       disabled={disabled}
-                      className={`flex items-center justify-between rounded-xl border-2 p-3 text-left transition-all ${
+                      whileHover={!disabled ? { y: -2 } : undefined}
+                      whileTap={!disabled ? { scale: 0.97 } : undefined}
+                      className={`flex items-center justify-between rounded-2xl border-2 p-4 text-left transition-all ${
                         on
-                          ? "border-brand-yellow bg-brand-yellow/10"
+                          ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
                           : disabled
-                            ? "border-white/5 bg-white/5 opacity-40"
-                            : "border-white/10 bg-white/5 hover:border-white/20"
+                            ? "border-white/5 bg-ink-800 opacity-40"
+                            : "border-white/10 bg-ink-800 hover:border-white/25"
                       }`}
                     >
-                      <span className="font-semibold">{m.label}</span>
+                      <div className="flex items-center gap-3">
+                        {on && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-ink-900"
+                          >
+                            <Check size={12} strokeWidth={3} />
+                          </motion.span>
+                        )}
+                        <span className="font-display text-lg uppercase tracking-wide text-white">
+                          {m.label}
+                        </span>
+                      </div>
                       <span
                         className={`text-xs font-bold ${
                           m.extra ? "text-brand-yellow" : "text-white/40"
@@ -217,7 +269,7 @@ export default function TacosConfigurator() {
                       >
                         {m.extra > 0 ? `+${m.extra} DH` : "inclus"}
                       </span>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -227,31 +279,52 @@ export default function TacosConfigurator() {
           {step === 2 && (
             <motion.div
               key="sauce"
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 8 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-black">3. Choisis ta sauce</h2>
-              <p className="mt-1 text-white/60">
+              <h2 className="font-display text-3xl uppercase tracking-wide">
+                Choisis ta sauce
+              </h2>
+              <p className="mt-2 text-white/60">
                 La sauce fromagère maison est incluse dans tous les tacos.
               </p>
 
-              <div className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-                {TACOS_SAUCES.map((s) => {
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                {TACOS_SAUCES.map((s, i) => {
                   const on = sauce === s.id;
                   return (
-                    <button
+                    <motion.button
                       key={s.id}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.03 + i * 0.03 }}
                       onClick={() => setSauce(s.id)}
-                      className={`flex items-center justify-between rounded-xl border-2 p-3 text-left transition-all ${
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={`flex items-center justify-between rounded-2xl border-2 p-4 text-left transition-all ${
                         on
-                          ? "border-brand-yellow bg-brand-yellow/10"
-                          : "border-white/10 bg-white/5 hover:border-white/20"
+                          ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
+                          : "border-white/10 bg-ink-800 hover:border-white/25"
                       }`}
                     >
-                      <span className="font-semibold">{s.label}</span>
+                      <div className="flex items-center gap-3">
+                        {on && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-ink-900"
+                          >
+                            <Check size={12} strokeWidth={3} />
+                          </motion.span>
+                        )}
+                        <span className="font-display text-lg uppercase tracking-wide text-white">
+                          {s.label}
+                        </span>
+                      </div>
                       {s.heat && <span className="text-sm">{s.heat}</span>}
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
@@ -260,7 +333,7 @@ export default function TacosConfigurator() {
         </AnimatePresence>
 
         {/* Navigation */}
-        <div className="mt-8 flex items-center justify-between">
+        <div className="mt-10 flex items-center justify-between gap-3">
           <button
             onClick={() => setStep((step - 1) as Step)}
             disabled={step === 0}
@@ -277,13 +350,19 @@ export default function TacosConfigurator() {
               Suivant <ArrowRight size={16} />
             </button>
           ) : (
-            <button
+            <motion.button
               onClick={handleAdd}
               disabled={!sauce || meats.length !== maxMeats}
+              whileHover={
+                sauce && meats.length === maxMeats ? { scale: 1.02 } : undefined
+              }
+              whileTap={
+                sauce && meats.length === maxMeats ? { scale: 0.97 } : undefined
+              }
               className={`btn text-sm ${
                 added
                   ? "bg-brand-green text-white"
-                  : "bg-brand-yellow text-brand-black hover:bg-brand-yellow-dark disabled:bg-white/10 disabled:text-white/40"
+                  : "bg-brand-yellow text-ink-900 shadow-glow hover:bg-brand-yellow-light disabled:bg-white/10 disabled:text-white/40 disabled:shadow-none"
               }`}
             >
               {added ? (
@@ -292,48 +371,44 @@ export default function TacosConfigurator() {
                 </>
               ) : (
                 <>
-                  <ShoppingBag size={16} /> Ajouter au panier · {total} DH
+                  <ShoppingBag size={16} /> Ajouter ·{" "}
+                  <PriceCounter value={total} />
                 </>
               )}
-            </button>
+            </motion.button>
           )}
         </div>
       </div>
 
       {/* RIGHT: Summary */}
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <div className="card p-6">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-white/60">
-            Ton Tacos
-          </h3>
-
-          <div className="relative mt-4 aspect-square w-full overflow-hidden rounded-2xl">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-ink-800 shadow-card">
+          <div className="relative aspect-square w-full overflow-hidden">
             <Image
               src={sizeDef.image}
               alt={sizeDef.label}
               fill
-              sizes="(min-width: 1024px) 380px, 100vw"
+              sizes="(min-width: 1024px) 400px, 100vw"
               className="object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent p-4">
-              <div className="text-sm text-white/70">Taille</div>
-              <div className="text-2xl font-black text-brand-yellow">
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-transparent" />
+            <div className="absolute left-5 top-5 chip-yellow">
+              <Flame size={12} /> Ton tacos
+            </div>
+            <div className="absolute inset-x-5 bottom-5">
+              <div className="text-xs uppercase tracking-widest text-white/70">
+                Taille
+              </div>
+              <div className="font-display text-4xl uppercase leading-none tracking-wide text-brand-yellow">
                 {sizeDef.label}
               </div>
             </div>
           </div>
 
-          <div className="mt-4 space-y-3 text-sm">
-            <Row label="Taille">
-              {sizeDef.label} ({maxMeats} viande{maxMeats > 1 ? "s" : ""})
-            </Row>
+          <div className="space-y-3 p-5 text-sm">
             <Row label="Viandes">
               {meats.length
-                ? meats
-                    .map(
-                      (id) => TACOS_MEATS.find((m) => m.id === id)?.label
-                    )
-                    .join(", ")
+                ? meats.map((id) => TACOS_MEATS.find((m) => m.id === id)?.label).join(", ")
                 : "—"}
             </Row>
             <Row label="Sauce">
@@ -343,17 +418,23 @@ export default function TacosConfigurator() {
             <Row label="Frites">Incluses</Row>
           </div>
 
-          <div className="mt-6 flex items-baseline justify-between border-t border-white/10 pt-4">
-            <span className="text-sm text-white/60">Total</span>
-            <span className="text-3xl font-black text-brand-yellow">
-              {total} DH
-            </span>
-          </div>
-
-          <div className="mt-4 text-center text-xs text-white/50">
-            <Link href="/order" className="hover:text-brand-yellow">
-              Voir le panier →
-            </Link>
+          <div className="border-t border-white/10 bg-ink-900/50 px-5 py-4">
+            <div className="flex items-baseline justify-between">
+              <span className="text-xs uppercase tracking-widest text-white/50">
+                Total
+              </span>
+              <span className="font-display text-4xl text-brand-yellow">
+                <PriceCounter value={total} />
+              </span>
+            </div>
+            <div className="mt-2 text-center text-xs text-white/40">
+              <Link
+                href="/order"
+                className="underline-offset-2 hover:text-brand-yellow hover:underline"
+              >
+                Voir le panier →
+              </Link>
+            </div>
           </div>
         </div>
       </aside>
@@ -361,16 +442,10 @@ export default function TacosConfigurator() {
   );
 }
 
-function Row({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="text-white/50">{label}</span>
+      <span className="text-xs uppercase tracking-widest text-white/40">{label}</span>
       <span className="text-right font-medium text-white">{children}</span>
     </div>
   );

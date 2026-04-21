@@ -45,3 +45,5 @@ next-env.d.ts.bak
 
 # Local tool state
 .claude/
+
+.vercel

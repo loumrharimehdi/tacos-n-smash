@@ -70,7 +70,7 @@ export default function AdminPage() {
 
   if (!authed) {
     return (
-      <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4">
+      <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 pt-20 sm:pt-24">
         <div className="w-full">
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-yellow/10 text-brand-yellow">
             <Lock size={22} />
@@ -110,7 +110,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-5xl px-4 py-10 pt-28 sm:px-6 sm:pt-32">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-3xl font-black">Commandes</h1>

@@ -9,21 +9,26 @@ export const metadata = {
 
 export default function OrderPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <div className="mb-8">
-        <div className="chip mb-3">🛒 Commande</div>
-        <h1 className="section-title">Finalise ta commande</h1>
-        <p className="mt-3 max-w-xl text-white/70">
-          Vérifie ton panier, laisse tes infos et envoie la commande au restaurant
-          par WhatsApp. Paiement cash à la livraison.
-        </p>
-      </div>
+    <div className="pt-20 sm:pt-24">
+      <section className="relative overflow-hidden border-b border-white/10 bg-ink-900">
+        <div className="absolute inset-0 bg-radial-spot" />
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
+          <div className="kicker">🛒 Finalise ta commande</div>
+          <h1 className="mt-4 section-title">
+            Dernière <span className="text-brand-yellow">étape</span>
+          </h1>
+          <p className="mt-4 max-w-xl text-white/60">
+            Vérifie ton panier, laisse tes infos et envoie la commande au
+            restaurant par WhatsApp. Paiement cash à la livraison.
+          </p>
+        </div>
+      </section>
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_420px]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:py-16 lg:grid-cols-[1fr_420px]">
         <div>
           <OrderForm />
         </div>
-        <aside className="lg:sticky lg:top-24 lg:self-start">
+        <aside className="lg:sticky lg:top-28 lg:self-start">
           <Cart />
         </aside>
       </div>
