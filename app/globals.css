@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-yellow: #ffd700;
+  --brand-black: #1a1a1a;
+  --brand-green: #2d6a4f;
+  --brand-cream: #fff8e1;
+}
+
+html,
+body {
+  background-color: var(--brand-black);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-yellow {
+    @apply btn bg-brand-yellow text-brand-black shadow-brand-yellow hover:bg-brand-yellow-dark hover:shadow-lg;
+  }
+  .btn-green {
+    @apply btn bg-brand-green text-white hover:bg-brand-green-dark;
+  }
+  .btn-outline {
+    @apply btn border-2 border-white/20 bg-white/5 text-white backdrop-blur hover:border-white/40 hover:bg-white/10;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80;
+  }
+  .card {
+    @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur;
+  }
+  .input {
+    @apply w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow;
+  }
+  .section-title {
+    @apply text-3xl font-black tracking-tight sm:text-4xl md:text-5xl;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0e0e0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
