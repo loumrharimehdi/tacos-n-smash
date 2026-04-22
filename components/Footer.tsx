@@ -54,7 +54,7 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="kicker">Contact</h4>
+          <h3 className="kicker">Contact</h3>
           <ul className="mt-4 space-y-4 text-sm">
             <li className="flex items-start gap-3">
               <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
@@ -62,7 +62,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-semibold text-white">{RESTAURANT.address}</div>
-                <div className="text-xs text-white/50">VCPJ+44 · Meknès</div>
+                <div className="text-xs text-white/65">VCPJ+44 · Meknès</div>
               </div>
             </li>
             <li className="flex items-center gap-3">
@@ -87,7 +87,7 @@ export default function Footer() {
 
         {/* Navigation */}
         <div>
-          <h4 className="kicker">Menu</h4>
+          <h3 className="kicker">Menu</h3>
           <ul className="mt-4 space-y-2 text-sm">
             {[
               { href: "/", label: "Accueil" },
@@ -119,7 +119,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10 bg-ink-900">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/40 sm:flex-row sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/60 sm:flex-row sm:px-6">
           <p>© {new Date().getFullYear()} Tacos & Smash — Meknès. Tous droits réservés.</p>
           <p>
             ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")} ·{" "}

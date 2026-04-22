@@ -42,7 +42,7 @@ export default async function AdminPage() {
       {orders.length === 0 ? (
         <div className="card mt-8 p-10 text-center text-white/60">
           Aucune commande pour l'instant.
-          <div className="mt-2 text-xs text-white/40">
+          <div className="mt-2 text-xs text-white/60">
             Les commandes envoyées depuis le site apparaîtront ici.
           </div>
         </div>
@@ -70,7 +70,7 @@ export default async function AdminPage() {
                   <div className="text-lg font-black text-brand-yellow">
                     {o.total} DH
                   </div>
-                  <div className="text-xs text-white/50">
+                  <div className="text-xs text-white/65">
                     {o.items.reduce((s, i) => s + i.quantity, 0)} articles
                   </div>
                 </div>
@@ -79,13 +79,13 @@ export default async function AdminPage() {
               <div className="mt-4 space-y-2 border-t border-white/10 pt-3 text-sm">
                 {o.mode === "livraison" && o.address && (
                   <div>
-                    <span className="text-white/50">Adresse : </span>
+                    <span className="text-white/65">Adresse : </span>
                     {o.address}
                   </div>
                 )}
                 {o.notes && (
                   <div>
-                    <span className="text-white/50">Notes : </span>
+                    <span className="text-white/65">Notes : </span>
                     {o.notes}
                   </div>
                 )}
@@ -95,10 +95,10 @@ export default async function AdminPage() {
                       <div>
                         <div>
                           {it.name}{" "}
-                          <span className="text-white/50">× {it.quantity}</span>
+                          <span className="text-white/65">× {it.quantity}</span>
                         </div>
                         {it.options && (
-                          <div className="text-xs text-white/50">{it.options}</div>
+                          <div className="text-xs text-white/65">{it.options}</div>
                         )}
                       </div>
                       <div className="font-semibold text-brand-yellow">
@@ -121,7 +121,7 @@ export default async function AdminPage() {
         </div>
       )}
 
-      <p className="mt-10 text-center text-xs text-white/40">
+      <p className="mt-10 text-center text-xs text-white/60">
         Tacos & Smash — {RESTAURANT.city} · admin interne
       </p>
     </div>

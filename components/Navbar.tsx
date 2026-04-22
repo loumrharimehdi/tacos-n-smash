@@ -64,7 +64,7 @@ export default function Navbar() {
             <div className="font-display text-xl tracking-wider text-white sm:text-2xl">
               Tacos & Smash
             </div>
-            <div className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/50 sm:text-[10px]">
+            <div className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/65 sm:text-[10px]">
               Original French Food
             </div>
           </div>

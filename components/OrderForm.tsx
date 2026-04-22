@@ -271,7 +271,7 @@ export default function OrderForm() {
         Envoyer la commande par WhatsApp
       </button>
 
-      <p className="text-center text-xs text-white/50">
+      <p className="text-center text-xs text-white/65">
         Ta commande sera envoyée par WhatsApp au restaurant. L'équipe confirmera
         par message.
       </p>

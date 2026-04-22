@@ -100,7 +100,7 @@ body {
     @apply relative overflow-hidden rounded-3xl border border-white/10 bg-ink-800 shadow-card;
   }
   .input {
-    @apply w-full rounded-2xl border border-white/15 bg-ink-800 px-4 py-3 text-white placeholder:text-white/40 focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow;
+    @apply w-full rounded-2xl border border-white/15 bg-ink-800 px-4 py-3 text-white placeholder:text-white/60 focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow;
   }
   .section-title {
     @apply font-display text-section font-normal uppercase leading-none tracking-[0.02em];

@@ -88,12 +88,12 @@ export default function TacosConfigurator() {
           <div className="flex items-end justify-between">
             <div>
               <div className="kicker">Étape {step + 1} / 3</div>
-              <h3 className="mt-1 font-display text-3xl uppercase leading-none tracking-wide text-white sm:text-4xl">
+              <h2 className="mt-1 font-display text-3xl uppercase leading-none tracking-wide text-white sm:text-4xl">
                 {STEP_LABELS[step]}
-              </h3>
+              </h2>
             </div>
             <div className="text-right">
-              <div className="text-xs uppercase tracking-widest text-white/50">
+              <div className="text-xs uppercase tracking-widest text-white/65">
                 Progression
               </div>
               <div className="font-display text-2xl text-brand-yellow">
@@ -118,14 +118,14 @@ export default function TacosConfigurator() {
                       ? "bg-brand-yellow text-ink-900"
                       : step === i
                         ? "bg-brand-yellow/20 text-brand-yellow ring-2 ring-brand-yellow"
-                        : "bg-white/5 text-white/40"
+                        : "bg-white/5 text-white/60"
                   }`}
                 >
                   {step > i ? <Check size={13} /> : i + 1}
                 </div>
                 <span
                   className={`hidden text-xs font-semibold uppercase tracking-wider sm:inline ${
-                    step === i ? "text-white" : "text-white/40"
+                    step === i ? "text-white" : "text-white/60"
                   }`}
                 >
                   {label}
@@ -189,7 +189,7 @@ export default function TacosConfigurator() {
                           {s.price} DH
                         </span>
                       </div>
-                      <div className="mt-1 text-xs uppercase tracking-widest text-white/50">
+                      <div className="mt-1 text-xs uppercase tracking-widest text-white/65">
                         {s.meats} viande{s.meats > 1 ? "s" : ""}
                       </div>
                       {on && (
@@ -264,7 +264,7 @@ export default function TacosConfigurator() {
                       </div>
                       <span
                         className={`text-xs font-bold ${
-                          m.extra ? "text-brand-yellow" : "text-white/40"
+                          m.extra ? "text-brand-yellow" : "text-white/60"
                         }`}
                       >
                         {m.extra > 0 ? `+${m.extra} DH` : "inclus"}
@@ -362,7 +362,7 @@ export default function TacosConfigurator() {
               className={`btn text-sm ${
                 added
                   ? "bg-brand-green text-white"
-                  : "bg-brand-yellow text-ink-900 shadow-glow hover:bg-brand-yellow-light disabled:bg-white/10 disabled:text-white/40 disabled:shadow-none"
+                  : "bg-brand-yellow text-ink-900 shadow-glow hover:bg-brand-yellow-light disabled:bg-white/10 disabled:text-white/60 disabled:shadow-none"
               }`}
             >
               {added ? (
@@ -420,14 +420,14 @@ export default function TacosConfigurator() {
 
           <div className="border-t border-white/10 bg-ink-900/50 px-5 py-4">
             <div className="flex items-baseline justify-between">
-              <span className="text-xs uppercase tracking-widest text-white/50">
+              <span className="text-xs uppercase tracking-widest text-white/65">
                 Total
               </span>
               <span className="font-display text-4xl text-brand-yellow">
                 <PriceCounter value={total} />
               </span>
             </div>
-            <div className="mt-2 text-center text-xs text-white/40">
+            <div className="mt-2 text-center text-xs text-white/60">
               <Link
                 href="/order"
                 className="underline-offset-2 hover:text-brand-yellow hover:underline"
@@ -445,7 +445,7 @@ export default function TacosConfigurator() {
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between gap-3">
-      <span className="text-xs uppercase tracking-widest text-white/40">{label}</span>
+      <span className="text-xs uppercase tracking-widest text-white/60">{label}</span>
       <span className="text-right font-medium text-white">{children}</span>
     </div>
   );

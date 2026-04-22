@@ -119,10 +119,10 @@ export default function ConfirmationPage() {
                   <div>
                     <div className="font-semibold">
                       {it.name}{" "}
-                      <span className="text-white/50">× {it.quantity}</span>
+                      <span className="text-white/65">× {it.quantity}</span>
                     </div>
                     {it.options && (
-                      <div className="mt-0.5 text-xs text-white/50">
+                      <div className="mt-0.5 text-xs text-white/65">
                         {it.options}
                       </div>
                     )}
@@ -173,7 +173,7 @@ export default function ConfirmationPage() {
           </Link>
         </motion.div>
 
-        <div className="mt-12 text-center text-sm text-white/50">
+        <div className="mt-12 text-center text-sm text-white/65">
           <p>
             Une question ? Appelle au{" "}
             <a

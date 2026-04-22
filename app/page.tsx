@@ -50,7 +50,7 @@ export default function HomePage() {
 
       {/* Marquee-style ticker */}
       <div className="relative overflow-hidden border-y border-white/10 bg-ink-800 py-4">
-        <div className="flex min-w-max animate-marquee items-center gap-12 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-white/30 sm:text-3xl">
+        <div className="flex min-w-max animate-marquee items-center gap-12 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-white/55 sm:text-3xl">
           {[...Array(2)].map((_, r) => (
             <div key={r} className="flex items-center gap-12">
               {[
@@ -113,13 +113,13 @@ export default function HomePage() {
                     key={s.id}
                     className="rounded-2xl border border-white/10 bg-ink-800 p-4 text-center"
                   >
-                    <div className="text-[10px] font-semibold uppercase tracking-widest text-white/50">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-white/65">
                       {s.label}
                     </div>
                     <div className="mt-2 font-display text-2xl text-brand-yellow">
                       {s.price} DH
                     </div>
-                    <div className="mt-0.5 text-[11px] text-white/40">
+                    <div className="mt-0.5 text-[11px] text-white/60">
                       {s.meats} viande{s.meats > 1 ? "s" : ""}
                     </div>
                   </div>
@@ -271,7 +271,7 @@ export default function HomePage() {
               className="mt-4 section-title text-balance"
             >
               ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")}
-              <span className="text-white/40">/5</span>
+              <span className="text-white/60">/5</span>
               <br />
               <span className="text-brand-yellow">sur Google</span>
             </motion.h2>
@@ -302,7 +302,7 @@ export default function HomePage() {
                     fill="currentColor"
                   />
                   <p className="text-white/80">{r.q}</p>
-                  <footer className="mt-3 text-xs uppercase tracking-widest text-white/50">
+                  <footer className="mt-3 text-xs uppercase tracking-widest text-white/65">
                     — {r.src}
                   </footer>
                 </motion.blockquote>
@@ -366,11 +366,11 @@ export default function HomePage() {
                     <div className="font-display text-lg uppercase tracking-wide">
                       {title}
                     </div>
-                    <div className="text-xs text-white/50">{sub}</div>
+                    <div className="text-xs text-white/65">{sub}</div>
                   </div>
                   <ArrowRight
                     size={16}
-                    className="text-white/30 transition-colors group-hover:text-brand-yellow"
+                    className="text-white/55 transition-colors group-hover:text-brand-yellow"
                   />
                 </motion.a>
               ))}

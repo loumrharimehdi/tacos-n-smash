@@ -53,11 +53,11 @@ export default function Cart() {
     <div className="card p-5">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-display text-2xl uppercase tracking-wide">
-          Panier <span className="text-white/40">({count})</span>
+          Panier <span className="text-white/60">({count})</span>
         </h2>
         <button
           onClick={clear}
-          className="text-xs text-white/50 underline-offset-2 hover:text-brand-yellow hover:underline"
+          className="text-xs text-white/65 underline-offset-2 hover:text-brand-yellow hover:underline"
         >
           Tout vider
         </button>
@@ -97,7 +97,7 @@ export default function Cart() {
                     {item.name}
                   </div>
                   {item.options && (
-                    <div className="mt-0.5 text-xs text-white/50">{item.options}</div>
+                    <div className="mt-0.5 text-xs text-white/65">{item.options}</div>
                   )}
                   <div className="mt-0.5 font-bold text-brand-yellow">
                     {item.price} DH
@@ -126,7 +126,7 @@ export default function Cart() {
                   </div>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white/50 hover:bg-white/10 hover:text-red-400"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full text-white/65 hover:bg-white/10 hover:text-red-400"
                     aria-label="Supprimer"
                   >
                     <Trash2 size={14} />
