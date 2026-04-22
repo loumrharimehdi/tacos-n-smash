@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { RestaurantJsonLd } from "@/components/JsonLd";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -19,29 +21,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://tacos-n-smash.vercel.app"
-  ),
-  title: "Tacos & Smash — Original French Food · Meknès",
-  description:
-    "Tacos français & Smash Burgers à Meknès. ⭐ 4,8/5 sur Google (220 avis). Commande par WhatsApp, livraison sans contact, cash à la livraison.",
-  keywords: [
-    "tacos",
-    "smash burger",
-    "meknes",
-    "french tacos",
-    "livraison",
-    "restaurant meknes",
-    "street food",
-  ],
-  openGraph: {
-    title: "Tacos & Smash — Meknès",
+  metadataBase: new URL(SITE_URL),
+  ...buildMetadata({
+    title: "Tacos & Smash — Original French Food · Meknès",
     description:
-      "Original French Food. Tacos & Smash Burgers à Meknès. ⭐ 4,8/5 sur Google.",
-    type: "website",
-    locale: "fr_FR",
-    images: ["/images/logo.png"],
-  },
+      "Tacos français & Smash Burgers à Meknès. ⭐ 4,8/5 sur Google (220 avis). Commande par WhatsApp, livraison sans contact, cash à la livraison.",
+    path: "/",
+  }),
   icons: {
     icon: "/images/logo.png",
     apple: "/images/logo.png",
@@ -62,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${bebas.variable} ${inter.variable}`}>
       <body className="min-h-screen overflow-x-hidden bg-ink-900 font-body text-paper antialiased">
+        <RestaurantJsonLd />
         <Navbar />
         <main>{children}</main>
         <Footer />

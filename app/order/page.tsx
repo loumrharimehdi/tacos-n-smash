@@ -1,11 +1,13 @@
 import Cart from "@/components/Cart";
 import OrderForm from "@/components/OrderForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Commander · Tacos & Smash",
+export const metadata = buildMetadata({
+  title: "Commander · Tacos & Smash Meknès",
   description:
-    "Passe ta commande chez Tacos & Smash — livraison sans contact ou à emporter. Cash à la livraison.",
-};
+    "Passe ta commande chez Tacos & Smash Meknès — livraison sans contact ou à emporter. Cash à la livraison.",
+  path: "/order",
+});
 
 export default function OrderPage() {
   return (

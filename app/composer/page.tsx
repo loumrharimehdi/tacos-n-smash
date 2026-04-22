@@ -1,10 +1,12 @@
 import TacosConfigurator from "@/components/TacosConfigurator";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Composer mon Tacos · Tacos & Smash",
+export const metadata = buildMetadata({
+  title: "Composer mon Tacos · Tacos & Smash Meknès",
   description:
-    "Compose ton tacos sur mesure : taille, viandes, sauce. Sauce fromagère maison incluse, frites dedans.",
-};
+    "Compose ton tacos sur mesure à Meknès : taille, viandes, sauce. Sauce fromagère maison incluse, frites dedans. Livraison WhatsApp.",
+  path: "/composer",
+});
 
 export default function ComposerPage() {
   return (
