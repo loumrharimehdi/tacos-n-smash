@@ -1,6 +1,14 @@
 import { Resend } from "resend";
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+let _client: Resend | null = null;
 
-export const RESEND_FROM =
-  process.env.RESEND_FROM ?? "onboarding@resend.dev";
+export function getResend(): Resend {
+  if (!_client) {
+    const key = process.env.RESEND_API_KEY;
+    if (!key) throw new Error("RESEND_API_KEY is not set");
+    _client = new Resend(key);
+  }
+  return _client;
+}
+
+export const RESEND_FROM = process.env.RESEND_FROM ?? "onboarding@resend.dev";

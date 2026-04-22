@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import EmailProvider from "next-auth/providers/email";
 import { prisma } from "@/lib/prisma";
-import { resend, RESEND_FROM } from "@/lib/resend";
+import { getResend, RESEND_FROM } from "@/lib/resend";
 
 const ADMIN_EMAILS = (process.env.ADMIN_EMAIL ?? "")
   .split(",")
@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
           // Don't reveal whether the email is allowed; just skip sending.
           return;
         }
-        const { error } = await resend.emails.send({
+        const { error } = await getResend().emails.send({
           from: `Tacos & Smash <${RESEND_FROM}>`,
           to: identifier,
           subject: "Connexion à l'admin Tacos & Smash",
