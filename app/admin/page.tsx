@@ -1,113 +1,25 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { Lock, LogOut, RefreshCw, Trash2 } from "lucide-react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { LogOut } from "lucide-react";
+import { authOptions, isAdminEmail } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { RESTAURANT } from "@/lib/menu";
+import AdminActions from "./AdminActions";
 
-type StoredOrder = {
-  id: string;
-  name: string;
-  phone: string;
-  address: string;
-  mode: "livraison" | "surplace";
-  notes?: string;
-  total: number;
-  items: { name: string; price: number; quantity: number; options?: string }[];
-  createdAt: string;
-};
+export const dynamic = "force-dynamic";
 
-const ADMIN_STORAGE_KEY = "tacos-n-smash-admin-orders";
-const AUTH_STORAGE_KEY = "tacos-n-smash-admin-auth";
-// Demo password — replace with NextAuth once Supabase is configured.
-const DEMO_PASSWORD = "tacos2026";
-
-export default function AdminPage() {
-  const [authed, setAuthed] = useState(false);
-  const [password, setPassword] = useState("");
-  const [orders, setOrders] = useState<StoredOrder[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.sessionStorage.getItem(AUTH_STORAGE_KEY) === "1") {
-      setAuthed(true);
-      loadOrders();
-    }
-  }, []);
-
-  function loadOrders() {
-    try {
-      const raw = window.localStorage.getItem(ADMIN_STORAGE_KEY);
-      setOrders(raw ? JSON.parse(raw) : []);
-    } catch {
-      setOrders([]);
-    }
+export default async function AdminPage() {
+  const session = await getServerSession(authOptions);
+  if (!isAdminEmail(session?.user?.email)) {
+    redirect("/admin/signin");
   }
 
-  function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    if (password === DEMO_PASSWORD) {
-      window.sessionStorage.setItem(AUTH_STORAGE_KEY, "1");
-      setAuthed(true);
-      setError(null);
-      loadOrders();
-    } else {
-      setError("Mot de passe incorrect.");
-    }
-  }
-
-  function handleLogout() {
-    window.sessionStorage.removeItem(AUTH_STORAGE_KEY);
-    setAuthed(false);
-    setPassword("");
-  }
-
-  function clearAll() {
-    if (!confirm("Supprimer toutes les commandes enregistrées localement ?")) return;
-    window.localStorage.removeItem(ADMIN_STORAGE_KEY);
-    setOrders([]);
-  }
-
-  if (!authed) {
-    return (
-      <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 pt-20 sm:pt-24">
-        <div className="w-full">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-yellow/10 text-brand-yellow">
-            <Lock size={22} />
-          </div>
-          <h1 className="mt-4 text-center text-3xl font-black">Admin</h1>
-          <p className="mt-2 text-center text-sm text-white/60">
-            Tableau de bord protégé. Entre le mot de passe admin pour continuer.
-          </p>
-
-          <form onSubmit={handleLogin} className="mt-6 space-y-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mot de passe"
-              className="input"
-              autoFocus
-            />
-            {error && (
-              <div className="rounded-xl border border-red-400/40 bg-red-500/10 p-3 text-sm text-red-200">
-                {error}
-              </div>
-            )}
-            <button type="submit" className="btn-yellow w-full">
-              Se connecter
-            </button>
-          </form>
-
-          <p className="mt-8 rounded-xl border border-white/10 bg-white/5 p-3 text-xs text-white/50">
-            ℹ️ Version démo — l'authentification NextAuth + Supabase sera branchée
-            une fois les credentials configurés dans <code>.env</code>. Les
-            commandes sont stockées localement dans le navigateur.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  const orders = await prisma.order.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 200,
+    include: { items: true },
+  });
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 pt-28 sm:px-6 sm:pt-32">
@@ -115,28 +27,23 @@ export default function AdminPage() {
         <div>
           <h1 className="text-3xl font-black">Commandes</h1>
           <p className="text-sm text-white/60">
-            {orders.length} commande{orders.length > 1 ? "s" : ""} · stockage
-            local (démo).
+            {orders.length} commande{orders.length > 1 ? "s" : ""} · connecté en{" "}
+            <span className="text-white/80">{session?.user?.email}</span>
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button onClick={loadOrders} className="btn-outline text-sm">
-            <RefreshCw size={14} /> Actualiser
-          </button>
-          <button onClick={clearAll} className="btn-outline text-sm hover:border-red-400/50 hover:text-red-300">
-            <Trash2 size={14} /> Tout vider
-          </button>
-          <button onClick={handleLogout} className="btn-outline text-sm">
+          <AdminActions />
+          <Link href="/api/auth/signout" className="btn-outline text-sm">
             <LogOut size={14} /> Déconnexion
-          </button>
+          </Link>
         </div>
       </div>
 
       {orders.length === 0 ? (
         <div className="card mt-8 p-10 text-center text-white/60">
-          Aucune commande enregistrée pour l'instant.
+          Aucune commande pour l'instant.
           <div className="mt-2 text-xs text-white/40">
-            Les commandes envoyées depuis le site via WhatsApp apparaîtront ici.
+            Les commandes envoyées depuis le site apparaîtront ici.
           </div>
         </div>
       ) : (
@@ -153,6 +60,7 @@ export default function AdminPage() {
                     <span className="chip">
                       {o.mode === "livraison" ? "🚚 Livraison" : "🏪 Sur place"}
                     </span>
+                    <span className="chip">{o.status}</span>
                   </div>
                   <div className="mt-0.5 text-xs text-white/60">
                     {new Date(o.createdAt).toLocaleString("fr-FR")} · {o.phone}
@@ -182,8 +90,8 @@ export default function AdminPage() {
                   </div>
                 )}
                 <ul className="mt-2 divide-y divide-white/5">
-                  {o.items.map((it, i) => (
-                    <li key={i} className="flex items-start justify-between py-2">
+                  {o.items.map((it) => (
+                    <li key={it.id} className="flex items-start justify-between py-2">
                       <div>
                         <div>
                           {it.name}{" "}

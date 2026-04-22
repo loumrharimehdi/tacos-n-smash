@@ -15,21 +15,6 @@ type FormState = {
   notes: string;
 };
 
-const ADMIN_STORAGE_KEY = "tacos-n-smash-admin-orders";
-
-function saveLocalOrder(payload: any) {
-  if (typeof window === "undefined") return;
-  try {
-    const raw = window.localStorage.getItem(ADMIN_STORAGE_KEY);
-    const arr = raw ? JSON.parse(raw) : [];
-    arr.unshift({ ...payload, id: `ord-${Date.now()}` });
-    window.localStorage.setItem(
-      ADMIN_STORAGE_KEY,
-      JSON.stringify(arr.slice(0, 100))
-    );
-  } catch {}
-}
-
 export default function OrderForm() {
   const router = useRouter();
   const items = useCart((s) => s.items);
@@ -105,8 +90,15 @@ export default function OrderForm() {
       );
     } catch {}
 
-    // Save to local admin log (demo — real DB comes later)
-    saveLocalOrder({ ...payload, createdAt: new Date().toISOString() });
+    // Fire-and-forget persist to DB (keepalive so it survives the WhatsApp tab open)
+    try {
+      fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(() => {});
+    } catch {}
 
     // Persist last order for confirmation page
     try {
