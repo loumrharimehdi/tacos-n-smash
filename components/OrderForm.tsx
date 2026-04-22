@@ -90,15 +90,43 @@ export default function OrderForm() {
       );
     } catch {}
 
-    // Fire-and-forget persist to DB (keepalive so it survives the WhatsApp tab open)
+    // Persist to DB in background. WhatsApp tab still opens synchronously below,
+    // so we don't await. Outcome is tracked via sessionStorage for the
+    // confirmation page to surface if persistence failed.
     try {
+      window.sessionStorage.removeItem("tacos-n-smash-persist-status");
       fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
         keepalive: true,
-      }).catch(() => {});
-    } catch {}
+      })
+        .then((res) => {
+          const status = res.ok
+            ? "ok"
+            : res.status === 429
+              ? "rate_limited"
+              : "failed";
+          try {
+            window.sessionStorage.setItem(
+              "tacos-n-smash-persist-status",
+              status,
+            );
+          } catch {}
+          if (!res.ok) console.error("order persist failed", res.status);
+        })
+        .catch((err) => {
+          try {
+            window.sessionStorage.setItem(
+              "tacos-n-smash-persist-status",
+              "failed",
+            );
+          } catch {}
+          console.error("order persist error", err);
+        });
+    } catch (err) {
+      console.error("order persist threw", err);
+    }
 
     // Persist last order for confirmation page
     try {

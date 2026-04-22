@@ -21,12 +21,38 @@ type StoredOrder = {
 
 export default function ConfirmationPage() {
   const [order, setOrder] = useState<StoredOrder | null>(null);
+  const [persistStatus, setPersistStatus] = useState<
+    "pending" | "ok" | "rate_limited" | "failed" | null
+  >(null);
 
   useEffect(() => {
     try {
       const raw = window.sessionStorage.getItem("tacos-n-smash-last-order");
       if (raw) setOrder(JSON.parse(raw));
     } catch {}
+
+    // Poll the persist status briefly (background fetch may resolve after mount)
+    const read = () => {
+      try {
+        const s = window.sessionStorage.getItem(
+          "tacos-n-smash-persist-status",
+        ) as typeof persistStatus;
+        setPersistStatus(s ?? "pending");
+        return s;
+      } catch {
+        return null;
+      }
+    };
+    read();
+    const iv = setInterval(() => {
+      const s = read();
+      if (s && s !== "pending") clearInterval(iv);
+    }, 500);
+    const stop = setTimeout(() => clearInterval(iv), 8000);
+    return () => {
+      clearInterval(iv);
+      clearTimeout(stop);
+    };
   }, []);
 
   const whatsappUrl = order
@@ -62,6 +88,14 @@ export default function ConfirmationPage() {
             message.
           </p>
         </motion.div>
+
+        {(persistStatus === "rate_limited" || persistStatus === "failed") && (
+          <div className="mt-8 rounded-xl border border-yellow-400/40 bg-yellow-500/10 p-3 text-sm text-yellow-100">
+            {persistStatus === "rate_limited"
+              ? "Trop de commandes envoyées depuis ton appareil. Ta commande WhatsApp est bien partie, mais elle ne sera pas enregistrée côté admin. Réessaie dans quelques minutes si besoin."
+              : "Ta commande WhatsApp est bien partie, mais l'enregistrement côté admin a échoué. Le restaurant recevra quand même ton message."}
+          </div>
+        )}
 
         {order && (
           <motion.div
