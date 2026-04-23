@@ -39,8 +39,8 @@ export default function Navbar() {
       transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         transparent
-          ? "bg-transparent"
-          : "border-b border-white/10 bg-ink-900/75 backdrop-blur-xl"
+          ? "bg-brand-yellow"
+          : "border-b-2 border-brand-brown bg-brand-yellow shadow-sm"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6">
@@ -50,7 +50,7 @@ export default function Navbar() {
           className="group flex items-center gap-3"
           onClick={() => setOpen(false)}
         >
-          <div className="relative h-10 w-10 overflow-hidden rounded-full bg-brand-yellow ring-2 ring-brand-yellow/40 transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full bg-brand-cream ring-2 ring-brand-brown transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
             <Image
               src="/images/logo.png"
               alt="Tacos & Smash"
@@ -61,10 +61,10 @@ export default function Navbar() {
             />
           </div>
           <div className="leading-none">
-            <div className="font-display text-xl tracking-wider text-white sm:text-2xl">
+            <div className="font-display text-xl tracking-wider text-brand-brown sm:text-2xl">
               Tacos & Smash
             </div>
-            <div className="text-[9px] font-semibold uppercase tracking-[0.3em] text-white/65 sm:text-[10px]">
+            <div className="text-[9px] font-semibold uppercase tracking-[0.3em] text-brand-brown/65 sm:text-[10px]">
               Original French Food
             </div>
           </div>
@@ -78,10 +78,10 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors ${
                   active
-                    ? "text-brand-yellow"
-                    : "text-white/80 hover:text-white"
+                    ? "text-brand-green"
+                    : "text-brand-brown hover:text-brand-green"
                 }`}
               >
                 {l.label}
@@ -89,7 +89,7 @@ export default function Navbar() {
                   <motion.span
                     layoutId="nav-active"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 -z-10 rounded-full border border-brand-yellow/40 bg-brand-yellow/10"
+                    className="absolute inset-0 -z-10 rounded-full border-2 border-brand-green bg-brand-cream"
                   />
                 )}
               </Link>
@@ -102,7 +102,7 @@ export default function Navbar() {
           <Link
             href="/order"
             aria-label="Panier"
-            className="relative inline-flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 text-sm font-semibold text-white backdrop-blur transition-colors hover:border-brand-yellow/50 hover:text-brand-yellow"
+            className="relative inline-flex h-11 items-center gap-2 rounded-full bg-brand-orange px-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-brand-orange-dark"
           >
             <ShoppingBag size={16} />
             <span className="hidden sm:inline">Panier</span>
@@ -114,7 +114,7 @@ export default function Navbar() {
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   exit={{ scale: 0.6, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                  className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-yellow px-1.5 text-[11px] font-black text-ink-900 shadow-glow"
+                  className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-green px-1.5 text-[11px] font-black text-white ring-2 ring-brand-yellow"
                 >
                   {count}
                 </motion.span>
@@ -123,7 +123,7 @@ export default function Navbar() {
           </Link>
 
           <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white backdrop-blur md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand-brown bg-brand-cream text-brand-brown md:hidden"
             aria-label="Ouvrir le menu"
             onClick={() => setOpen((v) => !v)}
           >
@@ -140,7 +140,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 z-40 bg-ink-900/90 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-16 z-40 bg-brand-brown/20 backdrop-blur-sm md:hidden"
             onClick={() => setOpen(false)}
           >
             <motion.nav
@@ -149,7 +149,7 @@ export default function Navbar() {
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 280, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
-              className="ml-auto flex h-[calc(100vh-4rem)] w-full max-w-sm flex-col gap-2 border-l border-white/10 bg-ink-900 p-6"
+              className="ml-auto flex h-[calc(100vh-4rem)] w-full max-w-sm flex-col gap-2 border-l-2 border-brand-brown bg-brand-yellow p-6"
             >
               {NAV_LINKS.map((l, i) => {
                 const active = pathname === l.href;
@@ -163,10 +163,10 @@ export default function Navbar() {
                     <Link
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className={`block rounded-2xl border px-5 py-4 font-display text-2xl uppercase tracking-wider transition-colors ${
+                      className={`block rounded-2xl border-2 px-5 py-4 font-display text-2xl uppercase tracking-wider transition-colors ${
                         active
-                          ? "border-brand-yellow/40 bg-brand-yellow/10 text-brand-yellow"
-                          : "border-white/10 bg-white/5 text-white hover:border-white/30"
+                          ? "border-brand-brown bg-brand-green text-white"
+                          : "border-brand-brown bg-brand-cream text-brand-brown hover:bg-brand-orange hover:text-white"
                       }`}
                     >
                       {l.label}
@@ -178,9 +178,9 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="mt-auto rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/70"
+                className="mt-auto rounded-2xl border-2 border-brand-brown bg-brand-cream p-4 text-sm text-brand-brown"
               >
-                <div className="font-semibold text-white">Tacos & Smash</div>
+                <div className="font-semibold text-brand-brown">Tacos & Smash</div>
                 <div className="mt-1 text-xs">
                   4 Rue El Amal, Meknès · Ouvert jusqu'à minuit
                 </div>

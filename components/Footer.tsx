@@ -4,19 +4,19 @@ import { RESTAURANT } from "@/lib/menu";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-ink-900">
+    <footer className="relative overflow-hidden border-t border-brand-brown/10 bg-ink-900">
       <div className="absolute inset-x-0 top-0 divider-gradient" />
 
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] md:py-20">
         {/* Brand */}
         <div>
-          <div className="font-display text-4xl uppercase tracking-wider text-white sm:text-5xl">
+          <div className="font-display text-4xl uppercase tracking-wider text-brand-brown sm:text-5xl">
             Tacos & Smash
           </div>
           <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-yellow">
             Original French Food
           </div>
-          <p className="mt-6 max-w-sm text-sm text-white/55">
+          <p className="mt-6 max-w-sm text-sm text-brand-brown/55">
             Street food française à {RESTAURANT.city}. Tacos, Smash Burgers,
             sauce fromagère maison. Commande en ligne, livraison sans contact,
             cash à la livraison.
@@ -28,7 +28,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-brand-yellow hover:text-brand-yellow"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-yellow"
             >
               <Instagram size={16} />
             </a>
@@ -37,7 +37,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-brand-yellow hover:text-brand-yellow"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-yellow"
             >
               <Facebook size={16} />
             </a>
@@ -61,8 +61,8 @@ export default function Footer() {
                 <MapPin size={15} />
               </div>
               <div>
-                <div className="font-semibold text-white">{RESTAURANT.address}</div>
-                <div className="text-xs text-white/65">VCPJ+44 · Meknès</div>
+                <div className="font-semibold text-brand-brown">{RESTAURANT.address}</div>
+                <div className="text-xs text-brand-brown/65">VCPJ+44 · Meknès</div>
               </div>
             </li>
             <li className="flex items-center gap-3">
@@ -71,7 +71,7 @@ export default function Footer() {
               </div>
               <a
                 href={`tel:${RESTAURANT.phone.replace(/\s/g, "")}`}
-                className="font-semibold text-white hover:text-brand-yellow"
+                className="font-semibold text-brand-brown hover:text-brand-yellow"
               >
                 {RESTAURANT.phone}
               </a>
@@ -80,7 +80,7 @@ export default function Footer() {
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
                 <Clock size={15} />
               </div>
-              <span className="text-white/80">{RESTAURANT.hours}</span>
+              <span className="text-brand-brown/80">{RESTAURANT.hours}</span>
             </li>
           </ul>
         </div>
@@ -98,7 +98,7 @@ export default function Footer() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="inline-flex items-center gap-1 text-white/70 transition-colors hover:text-brand-yellow"
+                  className="inline-flex items-center gap-1 text-brand-brown/70 transition-colors hover:text-brand-yellow"
                 >
                   <span>{l.label}</span>
                   <ArrowRight
@@ -118,8 +118,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 bg-ink-900">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/60 sm:flex-row sm:px-6">
+      <div className="border-t border-brand-brown/10 bg-ink-900">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-brand-brown/60 sm:flex-row sm:px-6">
           <p>© {new Date().getFullYear()} Tacos & Smash — Meknès. Tous droits réservés.</p>
           <p>
             ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")} ·{" "}

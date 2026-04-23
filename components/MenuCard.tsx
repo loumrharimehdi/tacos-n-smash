@@ -33,10 +33,10 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
         delay: (index % 6) * 0.06,
         ease: [0.2, 0.8, 0.2, 1],
       }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-ink-800 shadow-card transition-all duration-500 hover:border-white/25 hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.9),0_0_40px_-10px_rgba(255,215,0,0.15)]"
+      className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-brand-brown bg-brand-cream text-brand-brown shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-brand"
     >
       {/* Image */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-ink-700 to-ink-900">
+      <div className="relative aspect-[4/3] w-full overflow-hidden border-b-2 border-brand-brown bg-brand-cream">
         {item.image ? (
           <Image
             src={item.image}
@@ -51,27 +51,24 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
           </div>
         )}
 
-        {/* Gradient overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-transparent opacity-80" />
-
-        {/* Floating price badge */}
+        {/* Floating price badge — green circle */}
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.15, duration: 0.4 }}
-          className="absolute right-3 top-3 rounded-full bg-brand-yellow px-3.5 py-1.5 shadow-glow"
+          transition={{ delay: 0.15, duration: 0.4, type: "spring" }}
+          className="absolute right-3 top-3 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand-brown bg-brand-green text-white"
         >
-          <span className="font-display text-lg leading-none tracking-wide text-ink-900">
+          <span className="font-display text-lg leading-none tracking-wide">
             {item.price}
           </span>
-          <span className="ml-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-900/70">
+          <span className="ml-0.5 self-end pb-0.5 text-[9px] font-bold uppercase tracking-wider">
             DH
           </span>
         </motion.div>
 
         {item.badge && (
-          <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-ink-900/70 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur">
+          <span className="absolute left-3 top-3 rounded-full border-2 border-brand-brown bg-brand-orange px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
             {item.badge}
           </span>
         )}
@@ -83,7 +80,7 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
             className={`btn w-full text-sm ${
               added
                 ? "bg-brand-green text-white"
-                : "bg-brand-yellow text-ink-900 hover:bg-brand-yellow-light"
+                : "bg-brand-orange text-white hover:bg-brand-orange-dark"
             }`}
             aria-label={`Ajouter ${item.name} au panier`}
           >
@@ -103,11 +100,11 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
       {/* Content */}
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <h3 className="font-display text-2xl leading-tight tracking-wide text-white">
+          <h3 className="font-display text-2xl leading-tight tracking-wide text-brand-brown">
             {item.name}
           </h3>
           {item.description && (
-            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/55">
+            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-brand-brown/55">
               {item.description}
             </p>
           )}
@@ -119,7 +116,7 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
             onClick={handleAdd}
             className={`btn w-full text-sm ${
               added
-                ? "bg-brand-green text-white"
+                ? "bg-brand-green text-brand-brown"
                 : "bg-brand-yellow text-ink-900"
             }`}
             aria-label={`Ajouter ${item.name} au panier`}

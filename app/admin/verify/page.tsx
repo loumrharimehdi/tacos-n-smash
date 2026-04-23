@@ -8,7 +8,7 @@ export default function VerifyPage() {
           <Mail size={22} />
         </div>
         <h1 className="mt-4 text-3xl font-black">Vérifie ton email</h1>
-        <p className="mt-2 text-sm text-white/60">
+        <p className="mt-2 text-sm text-brand-brown/60">
           Un lien de connexion t'a été envoyé. Clique dessus pour accéder au
           dashboard admin. Le lien expire dans 10 minutes.
         </p>

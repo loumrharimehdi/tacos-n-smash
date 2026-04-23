@@ -3,28 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --brand-yellow: #ffd700;
-  --brand-black: #0a0a0a;
-  --brand-green: #2d6a4f;
-  --brand-text: #f5f5f5;
+  --brand-yellow: #ffc72c;
+  --brand-brown: #4a2818;
+  --brand-green: #1b5e3f;
+  --brand-orange: #ff6b35;
+  --brand-cream: #fff8e7;
+  --brand-text: #4a2818;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #0a0a0a;
+  background-color: #ffc72c;
 }
 
 html,
 body {
-  background-color: #0a0a0a;
-  color: #f5f5f5;
+  background-color: #ffc72c;
+  color: #4a2818;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-weight: 500;
 }
 
 ::selection {
-  background-color: #ffd700;
-  color: #0a0a0a;
+  background-color: #4a2818;
+  color: #ffc72c;
 }
 
 @layer utilities {
@@ -40,7 +43,7 @@ body {
     scrollbar-width: none;
   }
 
-  /* Grain / noise overlay via SVG data-uri */
+  /* Grain / noise overlay — very subtle */
   .grain {
     position: relative;
     isolation: isolate;
@@ -50,25 +53,26 @@ body {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.35;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.12;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.29 0 0 0 0 0.16 0 0 0 0 0.09 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     background-size: 320px 320px;
     z-index: 1;
   }
 
   .divider-gradient {
-    height: 1px;
+    height: 2px;
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 215, 0, 0.6),
+      rgba(74, 40, 24, 0.45),
       transparent
     );
   }
 
+  /* kept as no-op to avoid build breaks; banished from design system */
   .text-glow-yellow {
-    text-shadow: 0 0 18px rgba(255, 215, 0, 0.45);
+    text-shadow: none;
   }
 
   .font-display {
@@ -79,34 +83,41 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold uppercase tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown focus-visible:ring-offset-2 focus-visible:ring-offset-brand-yellow disabled:cursor-not-allowed disabled:opacity-50;
   }
-  .btn-yellow {
-    @apply btn bg-brand-yellow text-ink-900 shadow-glow hover:-translate-y-0.5 hover:bg-brand-yellow-light hover:shadow-glow-lg;
+  .btn-orange {
+    @apply btn bg-brand-orange text-white hover:-translate-y-0.5 hover:bg-brand-orange-dark;
   }
   .btn-green {
     @apply btn bg-brand-green text-white hover:-translate-y-0.5 hover:bg-brand-green-dark;
   }
+  .btn-yellow {
+    /* Primary CTA on a yellow page = orange. Alias kept for existing call sites. */
+    @apply btn-orange;
+  }
   .btn-outline {
-    @apply btn border border-white/20 bg-white/5 text-white backdrop-blur transition-colors hover:border-white/60 hover:bg-white/10;
+    @apply btn border-2 border-brand-brown bg-transparent text-brand-brown hover:-translate-y-0.5 hover:bg-brand-brown hover:text-brand-yellow;
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.15em] text-white/80;
+    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-brand-brown/30 bg-brand-cream px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-brown;
   }
   .chip-yellow {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-brand-yellow/30 bg-brand-yellow/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-brand-yellow;
+    @apply inline-flex items-center gap-1.5 rounded-full border-2 border-brand-brown bg-brand-brown px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-brand-yellow;
   }
   .card {
-    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-ink-800 shadow-card;
+    @apply relative overflow-hidden rounded-3xl border-2 border-brand-brown bg-brand-cream text-brand-brown shadow-card;
   }
   .input {
-    @apply w-full rounded-2xl border border-white/15 bg-ink-800 px-4 py-3 text-white placeholder:text-white/60 focus:border-brand-yellow focus:outline-none focus:ring-1 focus:ring-brand-yellow;
+    @apply w-full rounded-2xl border-2 border-brand-brown bg-brand-cream px-4 py-3 text-brand-brown placeholder:text-brand-brown/50 focus:border-brand-green focus:outline-none focus:ring-1 focus:ring-brand-green;
   }
   .section-title {
-    @apply font-display text-section font-normal uppercase leading-none tracking-[0.02em];
+    @apply font-display text-section font-normal uppercase leading-none tracking-[0.02em] text-brand-brown;
   }
   .kicker {
-    @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-brand-yellow;
+    @apply text-[11px] font-bold uppercase tracking-[0.3em] text-brand-orange;
+  }
+  .price-badge {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-green px-3 py-1 font-display text-lg font-bold text-white;
   }
 }
 
@@ -116,12 +127,12 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #ffc72c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #222;
+  background: #4a2818;
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #333;
+  background: #2e180e;
 }

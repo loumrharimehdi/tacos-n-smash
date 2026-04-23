@@ -25,7 +25,7 @@ export default function MenuPage() {
   return (
     <div className="pt-20 sm:pt-24">
       {/* Header */}
-      <section className="relative overflow-hidden border-b border-white/10 bg-ink-900">
+      <section className="relative overflow-hidden border-b border-brand-brown/10 bg-ink-900">
         <div className="absolute inset-0 bg-radial-spot" />
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 md:py-24">
           <motion.div
@@ -38,7 +38,7 @@ export default function MenuPage() {
               <h1 className="mt-4 section-title">
                 Le <span className="text-brand-yellow">menu</span>
               </h1>
-              <p className="mt-4 max-w-xl text-white/60">
+              <p className="mt-4 max-w-xl text-brand-brown/60">
                 Tacos, Smash Burgers, Menus Family, suppléments, boissons et
                 desserts. Tous les prix en dirhams (DH).
               </p>
@@ -51,7 +51,7 @@ export default function MenuPage() {
       </section>
 
       {/* Tabs */}
-      <div className="sticky top-16 z-30 border-b border-white/10 bg-ink-900/85 backdrop-blur-xl sm:top-20">
+      <div className="sticky top-16 z-30 border-b border-brand-brown/10 bg-ink-900/85 backdrop-blur-xl sm:top-20">
         <div className="mx-auto max-w-7xl overflow-x-auto px-4 no-scrollbar sm:px-6">
           <div className="flex min-w-max items-center gap-2 py-4">
             <button
@@ -59,7 +59,7 @@ export default function MenuPage() {
               className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all ${
                 active === "all"
                   ? "bg-brand-yellow text-ink-900 shadow-glow"
-                  : "bg-white/5 text-white/70 hover:bg-white/10"
+                  : "bg-brand-cream/5 text-brand-brown/70 hover:bg-brand-cream/10"
               }`}
             >
               ✨ Tout
@@ -74,7 +74,7 @@ export default function MenuPage() {
                   className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all ${
                     on
                       ? "bg-brand-yellow text-ink-900 shadow-glow"
-                      : "bg-white/5 text-white/70 hover:bg-white/10"
+                      : "bg-brand-cream/5 text-brand-brown/70 hover:bg-brand-cream/10"
                   }`}
                 >
                   {info.emoji} {info.label}

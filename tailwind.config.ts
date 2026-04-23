@@ -9,22 +9,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Legacy `ink` palette remapped to warm tones so existing
+        // `bg-ink-*` / `ring-offset-ink-*` utilities inherit the new look.
         ink: {
-          900: "#0a0a0a",
-          800: "#111111",
-          700: "#171717",
-          600: "#1f1f1f",
+          900: "#FFC72C",
+          800: "#FFF8E7",
+          700: "#FFF8E7",
+          600: "#FFEFC2",
         },
         brand: {
-          yellow: "#FFD700",
-          "yellow-dark": "#E6C200",
-          "yellow-light": "#FFE55C",
-          black: "#0a0a0a",
-          green: "#2d6a4f",
-          "green-dark": "#1f4d38",
-          cream: "#FFF8E1",
+          yellow: "#FFC72C",
+          "yellow-dark": "#E6B020",
+          "yellow-light": "#FFD65A",
+          brown: "#4A2818",
+          "brown-dark": "#2E180E",
+          black: "#4A2818",
+          green: "#1B5E3F",
+          "green-dark": "#144A31",
+          orange: "#FF6B35",
+          "orange-dark": "#E65A28",
+          cream: "#FFF8E7",
         },
-        paper: "#f5f5f5",
+        paper: "#FFF8E7",
       },
       fontFamily: {
         display: ["var(--font-bebas)", "Impact", "system-ui", "sans-serif"],
@@ -36,32 +42,31 @@ const config: Config = {
         section: ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1", letterSpacing: "-0.01em" }],
       },
       boxShadow: {
-        brand: "0 30px 60px -20px rgba(0,0,0,0.6)",
-        glow: "0 0 40px rgba(255,215,0,0.4), 0 0 80px rgba(255,215,0,0.15)",
-        "glow-lg":
-          "0 0 60px rgba(255,215,0,0.55), 0 0 120px rgba(255,215,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2)",
-        card: "0 20px 40px -20px rgba(0,0,0,0.8), 0 10px 20px -10px rgba(0,0,0,0.5)",
+        brand: "0 10px 30px -12px rgba(74,40,24,0.25)",
+        glow: "0 8px 20px -8px rgba(74,40,24,0.25)",
+        "glow-lg": "0 14px 30px -12px rgba(74,40,24,0.35)",
+        card: "0 6px 16px -8px rgba(74,40,24,0.2)",
       },
       backgroundImage: {
         "radial-spot":
-          "radial-gradient(circle at 50% 0%, rgba(255,215,0,0.15), transparent 60%)",
+          "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.25), transparent 60%)",
         "sep-gradient":
-          "linear-gradient(90deg, transparent, rgba(255,215,0,0.6), transparent)",
+          "linear-gradient(90deg, transparent, rgba(74,40,24,0.4), transparent)",
       },
       keyframes: {
         pulseGlow: {
           "0%, 100%": {
             boxShadow:
-              "0 0 0 0 rgba(37,211,102,0.55), 0 0 0 0 rgba(37,211,102,0.35)",
+              "0 0 0 0 rgba(27,94,63,0.55), 0 0 0 0 rgba(27,94,63,0.35)",
           },
           "50%": {
             boxShadow:
-              "0 0 0 14px rgba(37,211,102,0), 0 0 0 28px rgba(37,211,102,0)",
+              "0 0 0 14px rgba(27,94,63,0), 0 0 0 28px rgba(27,94,63,0)",
           },
         },
         pulseYellow: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(255,215,0,0.55)" },
-          "50%": { boxShadow: "0 0 0 18px rgba(255,215,0,0)" },
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(255,107,53,0.55)" },
+          "50%": { boxShadow: "0 0 0 18px rgba(255,107,53,0)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },

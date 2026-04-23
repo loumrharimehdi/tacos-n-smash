@@ -49,8 +49,8 @@ export default function HomePage() {
       <Hero />
 
       {/* Marquee-style ticker */}
-      <div className="relative overflow-hidden border-y border-white/10 bg-ink-800 py-4">
-        <div className="flex min-w-max animate-marquee items-center gap-12 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-white/55 sm:text-3xl">
+      <div className="relative overflow-hidden border-y border-brand-brown/10 bg-ink-800 py-4">
+        <div className="flex min-w-max animate-marquee items-center gap-12 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-brand-brown/55 sm:text-3xl">
           {[...Array(2)].map((_, r) => (
             <div key={r} className="flex items-center gap-12">
               {[
@@ -78,7 +78,7 @@ export default function HomePage() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={staggerContainer}
-        className="relative overflow-hidden border-b border-white/10 bg-ink-900"
+        className="relative overflow-hidden border-b border-brand-brown/10 bg-ink-900"
       >
         <div className="absolute inset-0 bg-radial-spot" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28">
@@ -97,7 +97,7 @@ export default function HomePage() {
               </motion.h2>
               <motion.p
                 variants={staggerItem}
-                className="mt-5 max-w-md text-white/65"
+                className="mt-5 max-w-md text-brand-brown/65"
               >
                 Choisis la taille, la (ou les) viande(s) et la sauce. Sauce
                 fromagère maison incluse, frites à l'intérieur. Un tacos comme à
@@ -111,15 +111,15 @@ export default function HomePage() {
                 {TACOS_SIZES.map((s) => (
                   <div
                     key={s.id}
-                    className="rounded-2xl border border-white/10 bg-ink-800 p-4 text-center"
+                    className="rounded-2xl border border-brand-brown/10 bg-ink-800 p-4 text-center"
                   >
-                    <div className="text-[10px] font-semibold uppercase tracking-widest text-white/65">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-brand-brown/65">
                       {s.label}
                     </div>
                     <div className="mt-2 font-display text-2xl text-brand-yellow">
                       {s.price} DH
                     </div>
-                    <div className="mt-0.5 text-[11px] text-white/60">
+                    <div className="mt-0.5 text-[11px] text-brand-brown/60">
                       {s.meats} viande{s.meats > 1 ? "s" : ""}
                     </div>
                   </div>
@@ -140,7 +140,7 @@ export default function HomePage() {
                     key={s.id}
                     whileHover={{ y: -8, rotate: i === 1 ? 0 : i === 0 ? -2 : 2 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-ink-800 shadow-card ${
+                    className={`group relative overflow-hidden rounded-3xl border border-brand-brown/10 bg-ink-800 shadow-card ${
                       i === 1 ? "translate-y-6" : ""
                     }`}
                   >
@@ -154,7 +154,7 @@ export default function HomePage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-transparent" />
                       <div className="absolute inset-x-3 bottom-3">
-                        <div className="font-display text-xl uppercase tracking-wide text-white">
+                        <div className="font-display text-xl uppercase tracking-wide text-brand-brown">
                           {s.label}
                         </div>
                         <div className="text-sm font-bold text-brand-yellow">
@@ -183,7 +183,7 @@ export default function HomePage() {
           <h2 className="mt-4 section-title text-balance">
             Nos <span className="text-brand-yellow">classiques</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/65">
+          <p className="mx-auto mt-4 max-w-xl text-brand-brown/65">
             Les plats signatures qui font le buzz sur Instagram et qui cartonnent
             sur Glovo.
           </p>
@@ -239,7 +239,7 @@ export default function HomePage() {
               key={title}
               variants={staggerItem}
               whileHover={{ y: -4 }}
-              className="rounded-3xl border border-white/10 bg-ink-800 p-6 transition-colors hover:border-brand-yellow/30"
+              className="rounded-3xl border border-brand-brown/10 bg-ink-800 p-6 transition-colors hover:border-brand-yellow/30"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow/10 text-brand-yellow">
                 <Icon size={22} />
@@ -247,7 +247,7 @@ export default function HomePage() {
               <h3 className="mt-4 font-display text-2xl uppercase tracking-wide">
                 {title}
               </h3>
-              <p className="mt-2 text-sm text-white/60">{text}</p>
+              <p className="mt-2 text-sm text-brand-brown/60">{text}</p>
             </motion.div>
           ))}
         </div>
@@ -259,7 +259,7 @@ export default function HomePage() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={staggerContainer}
-        className="border-t border-white/10 bg-ink-800/40"
+        className="border-t border-brand-brown/10 bg-ink-800/40"
       >
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:py-28">
           <div>
@@ -271,11 +271,11 @@ export default function HomePage() {
               className="mt-4 section-title text-balance"
             >
               ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")}
-              <span className="text-white/60">/5</span>
+              <span className="text-brand-brown/60">/5</span>
               <br />
               <span className="text-brand-yellow">sur Google</span>
             </motion.h2>
-            <motion.p variants={staggerItem} className="mt-4 text-white/65">
+            <motion.p variants={staggerItem} className="mt-4 text-brand-brown/65">
               {RESTAURANT.googleReviews} avis · accueil chaleureux, propre,
               confortable, généreux — <em>"comme en France"</em>.
             </motion.p>
@@ -294,15 +294,15 @@ export default function HomePage() {
                 <motion.blockquote
                   key={i}
                   variants={staggerItem}
-                  className="relative rounded-3xl border border-white/10 bg-ink-800 p-6"
+                  className="relative rounded-3xl border border-brand-brown/10 bg-ink-800 p-6"
                 >
                   <Quote
                     className="absolute -top-3 left-5 text-brand-yellow"
                     size={22}
                     fill="currentColor"
                   />
-                  <p className="text-white/80">{r.q}</p>
-                  <footer className="mt-3 text-xs uppercase tracking-widest text-white/65">
+                  <p className="text-brand-brown/80">{r.q}</p>
+                  <footer className="mt-3 text-xs uppercase tracking-widest text-brand-brown/65">
                     — {r.src}
                   </footer>
                 </motion.blockquote>
@@ -322,7 +322,7 @@ export default function HomePage() {
               <br />
               <span className="text-brand-yellow">Meknès</span>
             </motion.h2>
-            <motion.p variants={staggerItem} className="mt-4 text-white/65">
+            <motion.p variants={staggerItem} className="mt-4 text-brand-brown/65">
               Repas sur place · À emporter · Livraison sans contact. Cabines
               privées, banquettes vertes, ambiance cosy.
             </motion.p>
@@ -357,7 +357,7 @@ export default function HomePage() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   whileHover={{ x: 4 }}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-ink-800 p-4 transition-colors hover:border-brand-yellow/40"
+                  className="group flex items-center gap-4 rounded-2xl border border-brand-brown/10 bg-ink-800 p-4 transition-colors hover:border-brand-yellow/40"
                 >
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
                     <Icon size={18} />
@@ -366,11 +366,11 @@ export default function HomePage() {
                     <div className="font-display text-lg uppercase tracking-wide">
                       {title}
                     </div>
-                    <div className="text-xs text-white/65">{sub}</div>
+                    <div className="text-xs text-brand-brown/65">{sub}</div>
                   </div>
                   <ArrowRight
                     size={16}
-                    className="text-white/55 transition-colors group-hover:text-brand-yellow"
+                    className="text-brand-brown/55 transition-colors group-hover:text-brand-yellow"
                   />
                 </motion.a>
               ))}
@@ -385,7 +385,7 @@ export default function HomePage() {
         whileInView="show"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="relative overflow-hidden border-t border-white/10"
+        className="relative overflow-hidden border-t border-brand-brown/10"
       >
         <div className="absolute inset-0 bg-radial-spot" />
         <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 md:py-32">
@@ -398,7 +398,7 @@ export default function HomePage() {
           >
             Ton prochain tacos
             <br />
-            <span className="text-brand-yellow text-glow-yellow">
+            <span className="text-brand-yellow">
               commence ici.
             </span>
           </motion.h2>

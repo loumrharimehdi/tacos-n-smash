@@ -11,10 +11,10 @@ export default function ScrollIndicator() {
       className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center"
     >
       <div className="flex flex-col items-center gap-2">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/60">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-brown/60">
           Scroll
         </span>
-        <div className="relative flex h-10 w-6 items-start justify-center rounded-full border border-white/30 p-1">
+        <div className="relative flex h-10 w-6 items-start justify-center rounded-full border border-brand-brown/30 p-1">
           <span className="block h-2 w-1 rounded-full bg-brand-yellow animate-scroll-hint" />
         </div>
       </div>

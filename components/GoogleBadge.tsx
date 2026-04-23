@@ -12,7 +12,7 @@ export default function GoogleBadge({ compact = false }: { compact?: boolean }) 
       initial={{ opacity: 0, y: 8, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 0.2, duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-      className={`inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-md ${
+      className={`inline-flex items-center gap-2 rounded-full border border-brand-brown/15 bg-brand-cream/5 backdrop-blur-md ${
         compact ? "px-3 py-1.5" : "px-4 py-2"
       }`}
     >
@@ -35,10 +35,10 @@ export default function GoogleBadge({ compact = false }: { compact?: boolean }) 
           </motion.span>
         ))}
       </div>
-      <span className={`font-bold text-white ${compact ? "text-sm" : "text-base"}`}>
+      <span className={`font-bold text-brand-brown ${compact ? "text-sm" : "text-base"}`}>
         {RESTAURANT.googleRating.toFixed(1).replace(".", ",")}
       </span>
-      <span className={`text-white/60 ${compact ? "text-xs" : "text-sm"}`}>
+      <span className={`text-brand-brown/60 ${compact ? "text-xs" : "text-sm"}`}>
         · {RESTAURANT.googleReviews} avis
       </span>
     </motion.div>

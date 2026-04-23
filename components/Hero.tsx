@@ -22,9 +22,8 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-ink-900"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-brand-yellow"
     >
-      {/* BG image with parallax */}
       <motion.div
         style={{ y, scale }}
         className="absolute inset-0 will-change-transform"
@@ -38,21 +37,12 @@ export default function Hero() {
           fetchPriority="high"
           sizes="100vw"
           quality={70}
-          className="object-cover"
+          className="object-cover opacity-30 mix-blend-multiply"
         />
       </motion.div>
 
-      {/* Dark overlay stack */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink-900/70 via-ink-900/60 to-ink-900" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-900/80 via-ink-900/30 to-ink-900/80" />
-      <div
-        className="absolute inset-0 opacity-60"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 40%, rgba(255,215,0,0.18), transparent 60%)",
-        }}
-      />
-      <GrainOverlay opacity={0.5} />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-yellow/50 via-transparent to-brand-yellow" />
+      <GrainOverlay opacity={0.1} />
 
       {/* Content */}
       <motion.div
@@ -69,9 +59,9 @@ export default function Hero() {
           Meknès · Ouvert jusqu'à minuit
         </motion.div>
 
-        <h1 className="font-display font-normal uppercase leading-[0.85] tracking-[0.01em] text-white [font-size:clamp(4rem,14vw,10rem)]">
+        <h1 className="font-display font-normal uppercase leading-[0.85] tracking-[0.01em] text-brand-brown [font-size:clamp(4rem,14vw,10rem)]">
           <span className="block">{"TACOS"}</span>
-          <span className="block text-brand-yellow text-glow-yellow">
+          <span className="block text-brand-green">
             {"& SMASH"}
           </span>
         </h1>
@@ -80,9 +70,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          className="mt-6 text-sm font-medium uppercase tracking-[0.4em] text-white/80 sm:text-base"
+          className="mt-6 text-sm font-medium uppercase tracking-[0.4em] text-brand-brown/80 sm:text-base"
         >
-          Original French Food <span className="text-brand-yellow">•</span> Meknès
+          Original French Food <span className="text-brand-orange">•</span> Meknès
         </motion.p>
 
         <motion.div

@@ -74,7 +74,7 @@ export default function ConfirmationPage() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
-            className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-brand-green text-white shadow-[0_0_60px_rgba(45,106,79,0.5)]"
+            className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-brand-green text-brand-brown shadow-[0_0_60px_rgba(45,106,79,0.5)]"
           >
             <Check size={44} strokeWidth={3} />
           </motion.div>
@@ -82,7 +82,7 @@ export default function ConfirmationPage() {
           <h1 className="mt-8 font-display uppercase tracking-wide [font-size:clamp(2.5rem,8vw,5rem)] [line-height:0.95]">
             Commande <span className="text-brand-yellow">envoyée</span>
           </h1>
-          <p className="mt-4 text-white/60">
+          <p className="mt-4 text-brand-brown/60">
             Merci{order?.name ? ` ${order.name}` : ""} — ta commande a été
             transmise au restaurant sur WhatsApp. L'équipe va confirmer par
             message.
@@ -113,16 +113,16 @@ export default function ConfirmationPage() {
               </span>
             </div>
 
-            <ul className="mt-5 divide-y divide-white/10 text-sm">
+            <ul className="mt-5 divide-y divide-brand-brown/10 text-sm">
               {order.items.map((it, i) => (
                 <li key={i} className="flex items-start justify-between gap-3 py-3">
                   <div>
                     <div className="font-semibold">
                       {it.name}{" "}
-                      <span className="text-white/65">× {it.quantity}</span>
+                      <span className="text-brand-brown/65">× {it.quantity}</span>
                     </div>
                     {it.options && (
-                      <div className="mt-0.5 text-xs text-white/65">
+                      <div className="mt-0.5 text-xs text-brand-brown/65">
                         {it.options}
                       </div>
                     )}
@@ -134,14 +134,14 @@ export default function ConfirmationPage() {
               ))}
             </ul>
 
-            <div className="mt-5 flex items-baseline justify-between border-t border-white/10 pt-4">
+            <div className="mt-5 flex items-baseline justify-between border-t border-brand-brown/10 pt-4">
               <span className="kicker">Total</span>
               <span className="font-display text-4xl text-brand-yellow">
                 {order.total} DH
               </span>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/10 bg-ink-900 p-4 text-xs text-white/60">
+            <div className="mt-5 rounded-2xl border border-brand-brown/10 bg-ink-900 p-4 text-xs text-brand-brown/60">
               <div>💳 Paiement : Cash à la livraison</div>
               {order.mode === "livraison" && order.address && (
                 <div className="mt-1">📍 {order.address}</div>
@@ -173,7 +173,7 @@ export default function ConfirmationPage() {
           </Link>
         </motion.div>
 
-        <div className="mt-12 text-center text-sm text-white/65">
+        <div className="mt-12 text-center text-sm text-brand-brown/65">
           <p>
             Une question ? Appelle au{" "}
             <a

@@ -154,7 +154,7 @@ export default function OrderForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-white/60">
+          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-brand-brown/60">
             Nom complet
           </label>
           <input
@@ -166,7 +166,7 @@ export default function OrderForm() {
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-white/60">
+          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-brand-brown/60">
             Téléphone
           </label>
           <input
@@ -181,7 +181,7 @@ export default function OrderForm() {
       </div>
 
       <div>
-        <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/60">
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-brand-brown/60">
           Mode de commande
         </label>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -191,13 +191,13 @@ export default function OrderForm() {
             className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
               form.mode === "livraison"
                 ? "border-brand-yellow bg-brand-yellow/10"
-                : "border-white/10 bg-white/5 hover:border-white/20"
+                : "border-brand-brown/10 bg-brand-cream/5 hover:border-brand-brown/20"
             }`}
           >
             <Truck className="shrink-0 text-brand-yellow" />
             <div>
               <div className="font-bold">Livraison</div>
-              <div className="text-xs text-white/60">Sans contact · Cash</div>
+              <div className="text-xs text-brand-brown/60">Sans contact · Cash</div>
             </div>
           </button>
           <button
@@ -206,13 +206,13 @@ export default function OrderForm() {
             className={`flex items-center gap-3 rounded-xl border-2 p-4 text-left transition-all ${
               form.mode === "surplace"
                 ? "border-brand-yellow bg-brand-yellow/10"
-                : "border-white/10 bg-white/5 hover:border-white/20"
+                : "border-brand-brown/10 bg-brand-cream/5 hover:border-brand-brown/20"
             }`}
           >
             <Store className="shrink-0 text-brand-yellow" />
             <div>
               <div className="font-bold">Sur place / À emporter</div>
-              <div className="text-xs text-white/60">4 Rue El Amal</div>
+              <div className="text-xs text-brand-brown/60">4 Rue El Amal</div>
             </div>
           </button>
         </div>
@@ -220,7 +220,7 @@ export default function OrderForm() {
 
       {form.mode === "livraison" && (
         <div>
-          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-white/60">
+          <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-brand-brown/60">
             Adresse de livraison
           </label>
           <input
@@ -234,7 +234,7 @@ export default function OrderForm() {
       )}
 
       <div>
-        <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-white/60">
+        <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-brand-brown/60">
           Notes (optionnel)
         </label>
         <textarea
@@ -245,13 +245,13 @@ export default function OrderForm() {
         />
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm">
+      <div className="rounded-2xl border border-brand-brown/10 bg-brand-cream/5 p-4 text-sm">
         <div className="flex items-center justify-between">
-          <span className="text-white/60">Paiement</span>
+          <span className="text-brand-brown/60">Paiement</span>
           <span className="font-semibold">💵 Cash à la livraison</span>
         </div>
         <div className="mt-2 flex items-center justify-between">
-          <span className="text-white/60">Total</span>
+          <span className="text-brand-brown/60">Total</span>
           <span className="text-2xl font-black text-brand-yellow">{total} DH</span>
         </div>
       </div>
@@ -271,7 +271,7 @@ export default function OrderForm() {
         Envoyer la commande par WhatsApp
       </button>
 
-      <p className="text-center text-xs text-white/65">
+      <p className="text-center text-xs text-brand-brown/65">
         Ta commande sera envoyée par WhatsApp au restaurant. L'équipe confirmera
         par message.
       </p>

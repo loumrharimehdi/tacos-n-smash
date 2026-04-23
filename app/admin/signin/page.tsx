@@ -27,7 +27,7 @@ export default function SignInPage() {
           <Lock size={22} />
         </div>
         <h1 className="mt-4 text-center text-3xl font-black">Admin</h1>
-        <p className="mt-2 text-center text-sm text-white/60">
+        <p className="mt-2 text-center text-sm text-brand-brown/60">
           Entre ton email admin pour recevoir un lien de connexion.
         </p>
 

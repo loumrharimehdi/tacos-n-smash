@@ -12,14 +12,14 @@ export const metadata = buildMetadata({
 export default function OrderPage() {
   return (
     <div className="pt-20 sm:pt-24">
-      <section className="relative overflow-hidden border-b border-white/10 bg-ink-900">
+      <section className="relative overflow-hidden border-b border-brand-brown/10 bg-ink-900">
         <div className="absolute inset-0 bg-radial-spot" />
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
           <div className="kicker">🛒 Finalise ta commande</div>
           <h1 className="mt-4 section-title">
             Dernière <span className="text-brand-yellow">étape</span>
           </h1>
-          <p className="mt-4 max-w-xl text-white/60">
+          <p className="mt-4 max-w-xl text-brand-brown/60">
             Vérifie ton panier, laisse tes infos et envoie la commande au
             restaurant par WhatsApp. Paiement cash à la livraison.
           </p>
