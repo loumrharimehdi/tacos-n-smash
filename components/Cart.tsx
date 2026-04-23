@@ -26,7 +26,7 @@ export default function Cart() {
   if (items.length === 0) {
     return (
       <div className="card flex flex-col items-center gap-4 p-10 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-yellow/10 text-brand-yellow">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-orange text-white">
           <ShoppingBag size={28} />
         </div>
         <div>
@@ -57,7 +57,7 @@ export default function Cart() {
         </h2>
         <button
           onClick={clear}
-          className="text-xs text-brand-brown/65 underline-offset-2 hover:text-brand-yellow hover:underline"
+          className="text-xs text-brand-brown/65 underline-offset-2 hover:text-brand-green hover:underline"
         >
           Tout vider
         </button>
@@ -73,7 +73,7 @@ export default function Cart() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="flex items-stretch gap-3 rounded-2xl border border-brand-brown/10 bg-ink-900 p-3"
+              className="flex items-stretch gap-3 rounded-2xl border-2 border-brand-brown bg-brand-yellow-dark p-3"
             >
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-brand-cream/5">
                 {item.image ? (
@@ -99,7 +99,7 @@ export default function Cart() {
                   {item.options && (
                     <div className="mt-0.5 text-xs text-brand-brown/65">{item.options}</div>
                   )}
-                  <div className="mt-0.5 font-bold text-brand-yellow">
+                  <div className="mt-0.5 font-bold text-brand-green">
                     {item.price} DH
                   </div>
                 </div>
@@ -140,7 +140,7 @@ export default function Cart() {
 
       <div className="mt-5 flex items-baseline justify-between border-t border-brand-brown/10 pt-4">
         <span className="kicker">Total</span>
-        <span className="font-display text-4xl text-brand-yellow">{total} DH</span>
+        <span className="font-display text-4xl text-brand-green">{total} DH</span>
       </div>
     </div>
   );

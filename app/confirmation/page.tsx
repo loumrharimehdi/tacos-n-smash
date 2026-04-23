@@ -80,7 +80,7 @@ export default function ConfirmationPage() {
           </motion.div>
 
           <h1 className="mt-8 font-display uppercase tracking-wide [font-size:clamp(2.5rem,8vw,5rem)] [line-height:0.95]">
-            Commande <span className="text-brand-yellow">envoyée</span>
+            Commande <span className="text-brand-green">envoyée</span>
           </h1>
           <p className="mt-4 text-brand-brown/60">
             Merci{order?.name ? ` ${order.name}` : ""} — ta commande a été
@@ -127,7 +127,7 @@ export default function ConfirmationPage() {
                       </div>
                     )}
                   </div>
-                  <div className="text-right font-bold text-brand-yellow">
+                  <div className="text-right font-bold text-brand-green">
                     {it.price * it.quantity} DH
                   </div>
                 </li>
@@ -136,12 +136,12 @@ export default function ConfirmationPage() {
 
             <div className="mt-5 flex items-baseline justify-between border-t border-brand-brown/10 pt-4">
               <span className="kicker">Total</span>
-              <span className="font-display text-4xl text-brand-yellow">
+              <span className="font-display text-4xl text-brand-green">
                 {order.total} DH
               </span>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-brand-brown/10 bg-ink-900 p-4 text-xs text-brand-brown/60">
+            <div className="mt-5 rounded-2xl border-2 border-brand-brown bg-brand-yellow-dark p-4 text-xs text-brand-brown/60">
               <div>💳 Paiement : Cash à la livraison</div>
               {order.mode === "livraison" && order.address && (
                 <div className="mt-1">📍 {order.address}</div>
@@ -178,7 +178,7 @@ export default function ConfirmationPage() {
             Une question ? Appelle au{" "}
             <a
               href={`tel:${RESTAURANT.phone.replace(/\s/g, "")}`}
-              className="font-semibold text-brand-yellow hover:underline"
+              className="font-semibold text-brand-green hover:underline"
             >
               {RESTAURANT.phone}
             </a>

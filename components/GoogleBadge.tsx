@@ -16,10 +16,10 @@ export default function GoogleBadge({ compact = false }: { compact?: boolean }) 
         compact ? "px-3 py-1.5" : "px-4 py-2"
       }`}
     >
-      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[11px] font-black text-ink-900">
+      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-[11px] font-black text-brand-brown">
         G
       </span>
-      <div className="flex items-center gap-0.5 text-brand-yellow">
+      <div className="flex items-center gap-0.5 text-brand-green">
         {stars.map((_, i) => (
           <motion.span
             key={i}

@@ -194,7 +194,7 @@ export default function OrderForm() {
                 : "border-brand-brown/10 bg-brand-cream/5 hover:border-brand-brown/20"
             }`}
           >
-            <Truck className="shrink-0 text-brand-yellow" />
+            <Truck className="shrink-0 text-brand-green" />
             <div>
               <div className="font-bold">Livraison</div>
               <div className="text-xs text-brand-brown/60">Sans contact · Cash</div>
@@ -209,7 +209,7 @@ export default function OrderForm() {
                 : "border-brand-brown/10 bg-brand-cream/5 hover:border-brand-brown/20"
             }`}
           >
-            <Store className="shrink-0 text-brand-yellow" />
+            <Store className="shrink-0 text-brand-green" />
             <div>
               <div className="font-bold">Sur place / À emporter</div>
               <div className="text-xs text-brand-brown/60">4 Rue El Amal</div>
@@ -252,7 +252,7 @@ export default function OrderForm() {
         </div>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-brand-brown/60">Total</span>
-          <span className="text-2xl font-black text-brand-yellow">{total} DH</span>
+          <span className="text-2xl font-black text-brand-green">{total} DH</span>
         </div>
       </div>
 

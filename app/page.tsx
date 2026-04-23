@@ -49,7 +49,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Marquee-style ticker */}
-      <div className="relative overflow-hidden border-y border-brand-brown/10 bg-ink-800 py-4">
+      <div className="relative overflow-hidden border-y border-brand-brown/10 bg-brand-cream py-4">
         <div className="flex min-w-max animate-marquee items-center gap-12 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-brand-brown/55 sm:text-3xl">
           {[...Array(2)].map((_, r) => (
             <div key={r} className="flex items-center gap-12">
@@ -64,7 +64,7 @@ export default function HomePage() {
               ].map((w, i) => (
                 <span key={`${r}-${i}`} className="flex items-center gap-12">
                   <span>{w}</span>
-                  <span className="text-brand-yellow">✦</span>
+                  <span className="text-brand-green">✦</span>
                 </span>
               ))}
             </div>
@@ -78,7 +78,7 @@ export default function HomePage() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={staggerContainer}
-        className="relative overflow-hidden border-b border-brand-brown/10 bg-ink-900"
+        className="relative overflow-hidden border-b border-brand-brown/10 bg-brand-yellow"
       >
         <div className="absolute inset-0 bg-radial-spot" />
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28">
@@ -93,7 +93,7 @@ export default function HomePage() {
               >
                 Compose ton tacos
                 <br />
-                <span className="text-brand-yellow">sur mesure</span>
+                <span className="text-brand-green">sur mesure</span>
               </motion.h2>
               <motion.p
                 variants={staggerItem}
@@ -111,12 +111,12 @@ export default function HomePage() {
                 {TACOS_SIZES.map((s) => (
                   <div
                     key={s.id}
-                    className="rounded-2xl border border-brand-brown/10 bg-ink-800 p-4 text-center"
+                    className="rounded-2xl border-2 border-brand-brown bg-brand-cream p-4 text-center"
                   >
                     <div className="text-[10px] font-semibold uppercase tracking-widest text-brand-brown/65">
                       {s.label}
                     </div>
-                    <div className="mt-2 font-display text-2xl text-brand-yellow">
+                    <div className="mt-2 font-display text-2xl text-brand-green">
                       {s.price} DH
                     </div>
                     <div className="mt-0.5 text-[11px] text-brand-brown/60">
@@ -140,7 +140,7 @@ export default function HomePage() {
                     key={s.id}
                     whileHover={{ y: -8, rotate: i === 1 ? 0 : i === 0 ? -2 : 2 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className={`group relative overflow-hidden rounded-3xl border border-brand-brown/10 bg-ink-800 shadow-card ${
+                    className={`group relative overflow-hidden rounded-3xl border-2 border-brand-brown bg-brand-cream shadow-card ${
                       i === 1 ? "translate-y-6" : ""
                     }`}
                   >
@@ -152,12 +152,12 @@ export default function HomePage() {
                         sizes="(min-width: 768px) 180px, 30vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-yellow via-brand-yellow/30 to-transparent" />
                       <div className="absolute inset-x-3 bottom-3">
                         <div className="font-display text-xl uppercase tracking-wide text-brand-brown">
                           {s.label}
                         </div>
-                        <div className="text-sm font-bold text-brand-yellow">
+                        <div className="text-sm font-bold text-brand-green">
                           {s.price} DH
                         </div>
                       </div>
@@ -181,7 +181,7 @@ export default function HomePage() {
         <motion.div variants={staggerItem} className="mb-12 text-center">
           <div className="kicker">⭐ Les plus commandés</div>
           <h2 className="mt-4 section-title text-balance">
-            Nos <span className="text-brand-yellow">classiques</span>
+            Nos <span className="text-brand-green">classiques</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-brand-brown/65">
             Les plats signatures qui font le buzz sur Instagram et qui cartonnent
@@ -239,9 +239,9 @@ export default function HomePage() {
               key={title}
               variants={staggerItem}
               whileHover={{ y: -4 }}
-              className="rounded-3xl border border-brand-brown/10 bg-ink-800 p-6 transition-colors hover:border-brand-yellow/30"
+              className="rounded-3xl border-2 border-brand-brown bg-brand-cream p-6 transition-colors hover:border-brand-brown hover:-translate-y-0.5"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow/10 text-brand-yellow">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-orange text-white">
                 <Icon size={22} />
               </div>
               <h3 className="mt-4 font-display text-2xl uppercase tracking-wide">
@@ -259,7 +259,7 @@ export default function HomePage() {
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
         variants={staggerContainer}
-        className="border-t border-brand-brown/10 bg-ink-800/40"
+        className="border-t border-brand-brown/10 bg-brand-yellow-dark/30"
       >
         <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:py-28">
           <div>
@@ -273,7 +273,7 @@ export default function HomePage() {
               ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")}
               <span className="text-brand-brown/60">/5</span>
               <br />
-              <span className="text-brand-yellow">sur Google</span>
+              <span className="text-brand-green">sur Google</span>
             </motion.h2>
             <motion.p variants={staggerItem} className="mt-4 text-brand-brown/65">
               {RESTAURANT.googleReviews} avis · accueil chaleureux, propre,
@@ -294,10 +294,10 @@ export default function HomePage() {
                 <motion.blockquote
                   key={i}
                   variants={staggerItem}
-                  className="relative rounded-3xl border border-brand-brown/10 bg-ink-800 p-6"
+                  className="relative rounded-3xl border-2 border-brand-brown bg-brand-cream p-6"
                 >
                   <Quote
-                    className="absolute -top-3 left-5 text-brand-yellow"
+                    className="absolute -top-3 left-5 text-brand-green"
                     size={22}
                     fill="currentColor"
                   />
@@ -320,7 +320,7 @@ export default function HomePage() {
             >
               4 Rue El Amal
               <br />
-              <span className="text-brand-yellow">Meknès</span>
+              <span className="text-brand-green">Meknès</span>
             </motion.h2>
             <motion.p variants={staggerItem} className="mt-4 text-brand-brown/65">
               Repas sur place · À emporter · Livraison sans contact. Cabines
@@ -357,9 +357,9 @@ export default function HomePage() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
                   whileHover={{ x: 4 }}
-                  className="group flex items-center gap-4 rounded-2xl border border-brand-brown/10 bg-ink-800 p-4 transition-colors hover:border-brand-yellow/40"
+                  className="group flex items-center gap-4 rounded-2xl border-2 border-brand-brown bg-brand-cream p-4 transition-colors hover:border-brand-brown hover:-translate-y-0.5"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
                     <Icon size={18} />
                   </div>
                   <div className="flex-1">
@@ -370,7 +370,7 @@ export default function HomePage() {
                   </div>
                   <ArrowRight
                     size={16}
-                    className="text-brand-brown/55 transition-colors group-hover:text-brand-yellow"
+                    className="text-brand-brown/55 transition-colors group-hover:text-brand-green"
                   />
                 </motion.a>
               ))}
@@ -398,7 +398,7 @@ export default function HomePage() {
           >
             Ton prochain tacos
             <br />
-            <span className="text-brand-yellow">
+            <span className="text-brand-green">
               commence ici.
             </span>
           </motion.h2>

@@ -117,7 +117,7 @@ export default function MenuCard({ item, index = 0 }: { item: MenuItem; index?: 
             className={`btn w-full text-sm ${
               added
                 ? "bg-brand-green text-brand-brown"
-                : "bg-brand-yellow text-ink-900"
+                : "bg-brand-yellow text-brand-brown"
             }`}
             aria-label={`Ajouter ${item.name} au panier`}
           >

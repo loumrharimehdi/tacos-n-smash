@@ -4,7 +4,7 @@ export default function VerifyPage() {
   return (
     <div className="mx-auto flex min-h-[70vh] max-w-md items-center px-4 pt-20 sm:pt-24">
       <div className="w-full text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-yellow/10 text-brand-yellow">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-orange text-white">
           <Mail size={22} />
         </div>
         <h1 className="mt-4 text-3xl font-black">Vérifie ton email</h1>

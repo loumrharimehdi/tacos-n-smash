@@ -96,7 +96,7 @@ export default function TacosConfigurator() {
               <div className="text-xs uppercase tracking-widest text-brand-brown/65">
                 Progression
               </div>
-              <div className="font-display text-2xl text-brand-yellow">
+              <div className="font-display text-2xl text-brand-green">
                 {Math.round(progress)}%
               </div>
             </div>
@@ -115,9 +115,9 @@ export default function TacosConfigurator() {
                 <div
                   className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-black transition-all ${
                     step > i
-                      ? "bg-brand-yellow text-ink-900"
+                      ? "bg-brand-yellow text-brand-brown"
                       : step === i
-                        ? "bg-brand-yellow/20 text-brand-yellow ring-2 ring-brand-yellow"
+                        ? "bg-brand-yellow/20 text-brand-green ring-2 ring-brand-yellow"
                         : "bg-brand-cream/5 text-brand-brown/60"
                   }`}
                 >
@@ -167,7 +167,7 @@ export default function TacosConfigurator() {
                       className={`group relative overflow-hidden rounded-3xl border-2 p-4 text-left transition-all ${
                         on
                           ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
-                          : "border-brand-brown/10 bg-ink-800 hover:border-brand-brown/25"
+                          : "border-brand-brown/10 bg-brand-cream hover:border-brand-brown/25"
                       }`}
                     >
                       <div className="relative mx-auto aspect-square w-full max-w-[160px] overflow-hidden rounded-2xl">
@@ -185,7 +185,7 @@ export default function TacosConfigurator() {
                         <span className="font-display text-2xl uppercase tracking-wide text-brand-brown">
                           {s.label}
                         </span>
-                        <span className="font-display text-xl text-brand-yellow">
+                        <span className="font-display text-xl text-brand-green">
                           {s.price} DH
                         </span>
                       </div>
@@ -196,7 +196,7 @@ export default function TacosConfigurator() {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-yellow text-ink-900 shadow-glow"
+                          className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-yellow text-brand-brown shadow-glow"
                         >
                           <Check size={14} strokeWidth={3} />
                         </motion.div>
@@ -220,7 +220,7 @@ export default function TacosConfigurator() {
                 {maxMeats === 1 ? "Choisis ta viande" : `Choisis tes ${maxMeats} viandes`}
               </h2>
               <p className="mt-2 text-brand-brown/60">
-                <span className="font-semibold text-brand-yellow">
+                <span className="font-semibold text-brand-green">
                   {meats.length} / {maxMeats}
                 </span>{" "}
                 sélectionné{meats.length > 1 ? "s" : ""}
@@ -244,8 +244,8 @@ export default function TacosConfigurator() {
                         on
                           ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
                           : disabled
-                            ? "border-brand-brown/5 bg-ink-800 opacity-40"
-                            : "border-brand-brown/10 bg-ink-800 hover:border-brand-brown/25"
+                            ? "border-brand-brown/5 bg-brand-cream opacity-40"
+                            : "border-brand-brown/10 bg-brand-cream hover:border-brand-brown/25"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -253,7 +253,7 @@ export default function TacosConfigurator() {
                           <motion.span
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-ink-900"
+                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-brand-brown"
                           >
                             <Check size={12} strokeWidth={3} />
                           </motion.span>
@@ -264,7 +264,7 @@ export default function TacosConfigurator() {
                       </div>
                       <span
                         className={`text-xs font-bold ${
-                          m.extra ? "text-brand-yellow" : "text-brand-brown/60"
+                          m.extra ? "text-brand-green" : "text-brand-brown/60"
                         }`}
                       >
                         {m.extra > 0 ? `+${m.extra} DH` : "inclus"}
@@ -306,7 +306,7 @@ export default function TacosConfigurator() {
                       className={`flex items-center justify-between rounded-2xl border-2 p-4 text-left transition-all ${
                         on
                           ? "border-brand-yellow bg-brand-yellow/10 shadow-glow"
-                          : "border-brand-brown/10 bg-ink-800 hover:border-brand-brown/25"
+                          : "border-brand-brown/10 bg-brand-cream hover:border-brand-brown/25"
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -314,7 +314,7 @@ export default function TacosConfigurator() {
                           <motion.span
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-ink-900"
+                            className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-yellow text-brand-brown"
                           >
                             <Check size={12} strokeWidth={3} />
                           </motion.span>
@@ -362,7 +362,7 @@ export default function TacosConfigurator() {
               className={`btn text-sm ${
                 added
                   ? "bg-brand-green text-brand-brown"
-                  : "bg-brand-yellow text-ink-900 shadow-glow hover:bg-brand-yellow-light disabled:bg-brand-cream/10 disabled:text-brand-brown/60 disabled:shadow-none"
+                  : "bg-brand-yellow text-brand-brown shadow-glow hover:bg-brand-yellow-light disabled:bg-brand-cream/10 disabled:text-brand-brown/60 disabled:shadow-none"
               }`}
             >
               {added ? (
@@ -382,7 +382,7 @@ export default function TacosConfigurator() {
 
       {/* RIGHT: Summary */}
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <div className="relative overflow-hidden rounded-3xl border border-brand-brown/10 bg-ink-800 shadow-card">
+        <div className="relative overflow-hidden rounded-3xl border-2 border-brand-brown bg-brand-cream shadow-card">
           <div className="relative aspect-square w-full overflow-hidden">
             <Image
               src={sizeDef.image}
@@ -391,7 +391,7 @@ export default function TacosConfigurator() {
               sizes="(min-width: 1024px) 400px, 100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-yellow via-brand-yellow/40 to-transparent" />
             <div className="absolute left-5 top-5 chip-yellow">
               <Flame size={12} /> Ton tacos
             </div>
@@ -399,7 +399,7 @@ export default function TacosConfigurator() {
               <div className="text-xs uppercase tracking-widest text-brand-brown/70">
                 Taille
               </div>
-              <div className="font-display text-4xl uppercase leading-none tracking-wide text-brand-yellow">
+              <div className="font-display text-4xl uppercase leading-none tracking-wide text-brand-green">
                 {sizeDef.label}
               </div>
             </div>
@@ -418,19 +418,19 @@ export default function TacosConfigurator() {
             <Row label="Frites">Incluses</Row>
           </div>
 
-          <div className="border-t border-brand-brown/10 bg-ink-900/50 px-5 py-4">
+          <div className="border-t border-brand-brown/10 bg-brand-yellow/50 px-5 py-4">
             <div className="flex items-baseline justify-between">
               <span className="text-xs uppercase tracking-widest text-brand-brown/65">
                 Total
               </span>
-              <span className="font-display text-4xl text-brand-yellow">
+              <span className="font-display text-4xl text-brand-green">
                 <PriceCounter value={total} />
               </span>
             </div>
             <div className="mt-2 text-center text-xs text-brand-brown/60">
               <Link
                 href="/order"
-                className="underline-offset-2 hover:text-brand-yellow hover:underline"
+                className="underline-offset-2 hover:text-brand-green hover:underline"
               >
                 Voir le panier →
               </Link>

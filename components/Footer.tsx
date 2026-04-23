@@ -4,7 +4,7 @@ import { RESTAURANT } from "@/lib/menu";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-brand-brown/10 bg-ink-900">
+    <footer className="relative overflow-hidden border-t border-brand-brown/10 bg-brand-yellow">
       <div className="absolute inset-x-0 top-0 divider-gradient" />
 
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] md:py-20">
@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="font-display text-4xl uppercase tracking-wider text-brand-brown sm:text-5xl">
             Tacos & Smash
           </div>
-          <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-yellow">
+          <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-green">
             Original French Food
           </div>
           <p className="mt-6 max-w-sm text-sm text-brand-brown/55">
@@ -28,7 +28,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-yellow"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-green"
             >
               <Instagram size={16} />
             </a>
@@ -37,7 +37,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-yellow"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-green"
             >
               <Facebook size={16} />
             </a>
@@ -57,7 +57,7 @@ export default function Footer() {
           <h3 className="kicker">Contact</h3>
           <ul className="mt-4 space-y-4 text-sm">
             <li className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
+              <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
                 <MapPin size={15} />
               </div>
               <div>
@@ -66,18 +66,18 @@ export default function Footer() {
               </div>
             </li>
             <li className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
                 <Phone size={15} />
               </div>
               <a
                 href={`tel:${RESTAURANT.phone.replace(/\s/g, "")}`}
-                className="font-semibold text-brand-brown hover:text-brand-yellow"
+                className="font-semibold text-brand-brown hover:text-brand-green"
               >
                 {RESTAURANT.phone}
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-yellow/10 text-brand-yellow">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
                 <Clock size={15} />
               </div>
               <span className="text-brand-brown/80">{RESTAURANT.hours}</span>
@@ -98,7 +98,7 @@ export default function Footer() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="inline-flex items-center gap-1 text-brand-brown/70 transition-colors hover:text-brand-yellow"
+                  className="inline-flex items-center gap-1 text-brand-brown/70 transition-colors hover:text-brand-green"
                 >
                   <span>{l.label}</span>
                   <ArrowRight
@@ -118,7 +118,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-brand-brown/10 bg-ink-900">
+      <div className="border-t border-brand-brown/10 bg-brand-yellow">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-brand-brown/60 sm:flex-row sm:px-6">
           <p>© {new Date().getFullYear()} Tacos & Smash — Meknès. Tous droits réservés.</p>
           <p>

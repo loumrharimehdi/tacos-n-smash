@@ -67,7 +67,7 @@ export default async function AdminPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-lg font-black text-brand-yellow">
+                  <div className="text-lg font-black text-brand-green">
                     {o.total} DH
                   </div>
                   <div className="text-xs text-brand-brown/65">
@@ -101,7 +101,7 @@ export default async function AdminPage() {
                           <div className="text-xs text-brand-brown/65">{it.options}</div>
                         )}
                       </div>
-                      <div className="font-semibold text-brand-yellow">
+                      <div className="font-semibold text-brand-green">
                         {it.price * it.quantity} DH
                       </div>
                     </li>
