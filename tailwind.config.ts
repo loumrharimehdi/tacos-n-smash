@@ -9,12 +9,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: {
-          900: "#FFC72C",
-          800: "#FFF8E7",
-          700: "#FFF8E7",
-          600: "#FFF0C9",
-        },
         brand: {
           yellow: "#FFC72C",
           "yellow-soft": "#FFD95F",
