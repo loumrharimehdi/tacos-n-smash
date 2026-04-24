@@ -61,13 +61,13 @@ export default function Hero() {
             className="relative mx-auto h-[420px] w-full max-w-[520px] lg:h-[560px]"
           >
             <div className="absolute left-2 top-14 h-64 w-64 rotate-[-8deg] overflow-hidden rounded-[24px] border-[4px] border-brand-brown bg-brand-cream shadow-green sm:h-80 sm:w-80">
-              <Image src="/images/tacos-mythique.webp" alt="Tacos signature généreux" fill priority sizes="320px" className="object-cover" />
+              <Image src="/images/tacos-mythique.png" alt="Tacos signature généreux" fill priority sizes="320px" className="object-cover" />
             </div>
             <div className="absolute right-0 top-32 h-56 w-56 rotate-[7deg] overflow-hidden rounded-[24px] border-[4px] border-brand-brown bg-brand-cream shadow-hard sm:h-72 sm:w-72">
-              <Image src="/images/burger-original-smash.webp" alt="Smash burger avec cheddar" fill priority sizes="288px" className="object-cover" />
+              <Image src="/images/burger-original.png" alt="Smash burger avec cheddar" fill priority sizes="288px" className="object-cover" />
             </div>
             <div className="absolute bottom-6 left-20 h-44 w-44 rotate-[8deg] overflow-hidden rounded-[24px] border-[4px] border-brand-brown bg-brand-cream shadow-orange sm:h-56 sm:w-56">
-              <Image src="/images/frites.webp" alt="Frites chaudes et dorées" fill sizes="224px" className="object-cover" />
+              <Image src="/images/supplement-frites.png" alt="Frites chaudes et dorées" fill sizes="224px" className="object-cover" />
             </div>
             <div className="absolute right-8 top-6 rounded-full border-[3px] border-brand-brown bg-brand-orange px-5 py-3 font-display text-3xl uppercase text-brand-cream shadow-hard">
               Hot

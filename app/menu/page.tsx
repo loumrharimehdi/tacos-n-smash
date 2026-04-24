@@ -63,10 +63,10 @@ export default function MenuPage() {
           </div>
           <div className="relative mx-auto h-72 w-full max-w-md sm:h-96">
             <div className="absolute left-0 top-8 h-56 w-56 -rotate-6 overflow-hidden rounded-[22px] border-[4px] border-brand-brown bg-brand-cream shadow-green sm:h-72 sm:w-72">
-              <Image src="/images/tacos-chevre-miel.webp" alt="Tacos chèvre miel" fill sizes="288px" className="object-cover" priority />
+              <Image src="/images/tacos-chevre-miel.png" alt="Tacos chèvre miel" fill sizes="288px" className="object-cover" priority />
             </div>
             <div className="absolute bottom-0 right-0 h-48 w-48 rotate-6 overflow-hidden rounded-[22px] border-[4px] border-brand-brown bg-brand-cream shadow-hard sm:h-64 sm:w-64">
-              <Image src="/images/burger-big-smash.webp" alt="Big Smash burger" fill sizes="256px" className="object-cover" priority />
+              <Image src="/images/burger-big.png" alt="Big Smash burger" fill sizes="256px" className="object-cover" priority />
             </div>
           </div>
         </div>

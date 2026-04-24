@@ -25,9 +25,9 @@ export const TACOS_SIZES: {
   price: number;
   image: string;
 }[] = [
-  { id: "simple", label: "Simple", meats: 1, price: 35, image: "/images/tacos-simple.webp" },
-  { id: "double", label: "Double", meats: 2, price: 50, image: "/images/tacos-double.webp" },
-  { id: "triple", label: "Triple", meats: 3, price: 65, image: "/images/tacos-triple.webp" },
+  { id: "simple", label: "Simple", meats: 1, price: 35, image: "/images/tacos-simple.png" },
+  { id: "double", label: "Double", meats: 2, price: 50, image: "/images/tacos-double.png" },
+  { id: "triple", label: "Triple", meats: 3, price: 65, image: "/images/tacos-triple.png" },
 ];
 
 export const TACOS_MEATS: { id: string; label: string; extra: number }[] = [
@@ -61,7 +61,7 @@ export const MENU: MenuItem[] = [
     name: "L'Indien",
     description: "Poulet mariné aux épices indiennes, frites, sauce fromagère maison.",
     price: 69,
-    image: "/images/tacos-indien.webp",
+    image: "/images/tacos-indien.png",
     category: "tacos-signature",
     badge: "Signature",
   },
@@ -70,7 +70,7 @@ export const MENU: MenuItem[] = [
     name: "Le Bourgeois",
     description: "Steak haché de boeuf, fromage, frites et sauce fromagère.",
     price: 69,
-    image: "/images/tacos-bourgeois.webp",
+    image: "/images/tacos-bourgeois.png",
     category: "tacos-signature",
   },
   {
@@ -78,7 +78,7 @@ export const MENU: MenuItem[] = [
     name: "Le Chèvre Miel",
     description: "Fromage de chèvre, miel, frites et sauce fromagère maison.",
     price: 75,
-    image: "/images/tacos-chevre-miel.webp",
+    image: "/images/tacos-chevre-miel.png",
     category: "tacos-signature",
     badge: "Premium",
   },
@@ -87,7 +87,7 @@ export const MENU: MenuItem[] = [
     name: "Le Boursin",
     description: "Boursin ail et fines herbes, poulet ou steak, frites, sauce fromagère.",
     price: 69,
-    image: "/images/tacos-boursin.webp",
+    image: "/images/tacos-boursin.png",
     category: "tacos-signature",
   },
   {
@@ -95,7 +95,7 @@ export const MENU: MenuItem[] = [
     name: "Le Mythique",
     description: "Combinaison spéciale de viandes, frites et sauce fromagère.",
     price: 69,
-    image: "/images/tacos-mythique.webp",
+    image: "/images/tacos-mythique.png",
     category: "tacos-signature",
     badge: "Bestseller",
   },
@@ -104,7 +104,7 @@ export const MENU: MenuItem[] = [
     name: "Le Parisien",
     description: "Jambon de dinde fumé, fromage, frites et sauce fromagère.",
     price: 69,
-    image: "/images/tacos-parisien.webp",
+    image: "/images/tacos-parisien.png",
     category: "tacos-signature",
   },
   {
@@ -112,7 +112,7 @@ export const MENU: MenuItem[] = [
     name: "Original Smash",
     description: "Pain brioché, steak smashé, fromage, salade, tomate, oignon, cornichon, sauce maison.",
     price: 65,
-    image: "/images/burger-original-smash.webp",
+    image: "/images/burger-original.png",
     category: "smash",
     badge: "Signature",
   },
@@ -121,7 +121,7 @@ export const MENU: MenuItem[] = [
     name: "Crispy Smash",
     description: "Steak smashé, poulet croustillant pané, fromage, crudités et sauce maison.",
     price: 69,
-    image: "/images/burger-crispy-smash.webp",
+    image: "/images/burger-crispy.png",
     category: "smash",
   },
   {
@@ -129,7 +129,7 @@ export const MENU: MenuItem[] = [
     name: "Le Kentucky",
     description: "Steak smashé, poulet façon Kentucky épicé, jambon de dinde, fromage.",
     price: 69,
-    image: "/images/burger-kentucky.webp",
+    image: "/images/burger-kentucky.png",
     category: "smash",
     badge: "Spicy",
   },
@@ -138,7 +138,7 @@ export const MENU: MenuItem[] = [
     name: "Le New Yorkais Boursin",
     description: "Pain potatoes, steak smashé et sauce Boursin ail et fines herbes.",
     price: 69,
-    image: "/images/burger-new-yorkais.webp",
+    image: "/images/burger-new-yorkais.png",
     category: "smash",
   },
   {
@@ -146,7 +146,7 @@ export const MENU: MenuItem[] = [
     name: "Big Smash",
     description: "Double steak smashé, double fromage, salade, tomate, oignon, cornichon.",
     price: 69,
-    image: "/images/burger-big-smash.webp",
+    image: "/images/burger-big.png",
     category: "smash",
     badge: "Double",
   },
@@ -155,7 +155,7 @@ export const MENU: MenuItem[] = [
     name: "Rösti Smash",
     description: "Steak smashé, cheddar, rösti, salade, tomate et cornichon.",
     price: 69,
-    image: "/images/burger-rosti-smash.webp",
+    image: "/images/burger-rosti.png",
     category: "smash",
   },
   {
@@ -163,7 +163,7 @@ export const MENU: MenuItem[] = [
     name: "Tenders Big x3",
     description: "Trois tenders dorés, croustillants et généreux.",
     price: 52,
-    image: "/images/tenders-big.webp",
+    image: "/images/supplement-tenders.png",
     category: "supplements",
   },
   {
@@ -171,7 +171,7 @@ export const MENU: MenuItem[] = [
     name: "Cheesy Fries",
     description: "Frites chaudes nappées de fromage fondu.",
     price: 35,
-    image: "/images/cheesy-fries.webp",
+    image: "/images/supplement-cheesy-fries.png",
     category: "supplements",
     badge: "Cheesy",
   },
@@ -180,7 +180,7 @@ export const MENU: MenuItem[] = [
     name: "Chicken Nuggets x6",
     description: "Nuggets de poulet croustillants.",
     price: 25,
-    image: "/images/chicken-nuggets.webp",
+    image: "/images/supplement-nuggets.png",
     category: "supplements",
   },
   {
@@ -188,7 +188,7 @@ export const MENU: MenuItem[] = [
     name: "Onion Rings x4",
     description: "Anneaux d'oignon dorés et croustillants.",
     price: 25,
-    image: "/images/onion-rings.webp",
+    image: "/images/supplement-onion-rings.png",
     category: "supplements",
   },
   {
@@ -196,7 +196,7 @@ export const MENU: MenuItem[] = [
     name: "Frites",
     description: "Frites chaudes et dorées.",
     price: 15,
-    image: "/images/frites.webp",
+    image: "/images/supplement-frites.png",
     category: "supplements",
   },
   {
@@ -204,7 +204,7 @@ export const MENU: MenuItem[] = [
     name: "Stick sauce Nawel's",
     description: "Algérienne, Biggy, Ketchup ou Mayo.",
     price: 3,
-    image: "/images/supplement-biggy.webp",
+    image: "/images/supplement-biggy.png",
     category: "supplements",
   },
   {
@@ -269,7 +269,7 @@ export const MENU: MenuItem[] = [
     name: "Coca Cola 1L",
     description: "Bouteille fraîche.",
     price: 15,
-    image: "/images/bouteille-coca.webp",
+    image: "/images/supplement-bouteille.png",
     category: "boissons",
   },
   {
@@ -277,7 +277,7 @@ export const MENU: MenuItem[] = [
     name: "Coca Cola 33cl",
     description: "Canette fraîche.",
     price: 9,
-    image: "/images/cannette-coca.webp",
+    image: "/images/supplement-cannette.png",
     category: "boissons",
   },
   {
@@ -285,7 +285,7 @@ export const MENU: MenuItem[] = [
     name: "Ciel eau 1,5L",
     description: "Eau minérale.",
     price: 11,
-    image: "/images/bouteille-eau.webp",
+    image: "/images/supplement-bouteille.png",
     category: "boissons",
   },
   {
@@ -293,7 +293,7 @@ export const MENU: MenuItem[] = [
     name: "Ciel eau 33cl",
     description: "Petite bouteille.",
     price: 7,
-    image: "/images/cannette-eau.webp",
+    image: "/images/supplement-cannette.png",
     category: "boissons",
   },
 ];

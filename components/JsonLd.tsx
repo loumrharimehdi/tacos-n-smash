@@ -11,9 +11,9 @@ const restaurantSchema = {
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
   image: [
-    `${SITE_URL}/images/tacos-mythique.webp`,
-    `${SITE_URL}/images/burger-original-smash.webp`,
-    `${SITE_URL}/images/tacos-chevre-miel.webp`,
+    `${SITE_URL}/images/tacos-mythique.png`,
+    `${SITE_URL}/images/burger-original.png`,
+    `${SITE_URL}/images/tacos-chevre-miel.png`,
   ],
   telephone: "+212535486148",
   address: {

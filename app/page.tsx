@@ -200,7 +200,7 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden bg-brand-orange px-4 py-16 sm:px-6 lg:py-24">
         <div className="absolute inset-y-0 left-0 hidden w-1/3 opacity-30 md:block">
-          <Image src="/images/front.webp" alt="" fill sizes="33vw" className="object-cover mix-blend-multiply" />
+          <Image src="/images/tacos-mythique.png" alt="" fill sizes="33vw" className="object-cover mix-blend-multiply" />
         </div>
         <div className="relative mx-auto max-w-5xl text-center">
           <StickerPill color="brown" rotation={-2}>
