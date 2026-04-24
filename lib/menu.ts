@@ -5,13 +5,13 @@ export const RESTAURANT = {
   tagline: "Original French Food",
   city: "Meknès",
   address: "4 Rue El Amal, Meknès 50000",
+  plusCode: "VCPJ+44 Meknès",
   phone: "05 35 48 61 48",
   whatsapp: "+212678630651",
   whatsappDisplay: "+212 678-630651",
   instagram: "https://www.instagram.com/tacosnsmash/",
   facebook: "https://www.facebook.com/tacosnsmash",
-  glovo:
-    "https://glovoapp.com/ma/fr/meknes/tacos-and-smash-mks/",
+  glovo: "https://glovoapp.com/ma/fr/meknes/tacos-and-smash-mks/",
   googleRating: 4.8,
   googleReviews: 220,
   glovoSatisfaction: 97,
@@ -34,11 +34,11 @@ export const TACOS_MEATS: { id: string; label: string; extra: number }[] = [
   { id: "steak", label: "Steak", extra: 5 },
   { id: "poulet", label: "Poulet", extra: 0 },
   { id: "mixte", label: "Mixte", extra: 0 },
-  { id: "escalope", label: "Escalope Panée", extra: 2 },
+  { id: "escalope", label: "Escalope panée", extra: 2 },
   { id: "kebab", label: "Kebab", extra: 0 },
   { id: "nuggets", label: "Nuggets", extra: 0 },
   { id: "tenders", label: "Tenders", extra: 0 },
-  { id: "cordon-bleu", label: "Cordon Bleu", extra: 0 },
+  { id: "cordon-bleu", label: "Cordon bleu", extra: 0 },
 ];
 
 export const TACOS_SAUCES: { id: string; label: string; heat?: string }[] = [
@@ -49,27 +49,26 @@ export const TACOS_SAUCES: { id: string; label: string; heat?: string }[] = [
   { id: "blanche", label: "Blanche" },
   { id: "ketchup", label: "Ketchup" },
   { id: "poivre", label: "Poivre" },
-  { id: "algerienne", label: "Algérienne", heat: "🌶" },
-  { id: "harissa", label: "Harissa", heat: "🌶🌶" },
-  { id: "samourai", label: "Samouraï", heat: "🌶🌶" },
-  { id: "chily-thai", label: "Chily Thaï", heat: "🌶🌶🌶" },
+  { id: "algerienne", label: "Algérienne", heat: "piquant" },
+  { id: "harissa", label: "Harissa", heat: "très piquant" },
+  { id: "samourai", label: "Samouraï", heat: "très piquant" },
+  { id: "chily-thai", label: "Chily Thaï", heat: "extra piquant" },
 ];
 
 export const MENU: MenuItem[] = [
-  // Tacos Signature
   {
     id: "tacos-indien",
     name: "L'Indien",
-    description:
-      "Tortilla, poulet mariné épices indiennes, frites, sauce fromagère",
+    description: "Poulet mariné aux épices indiennes, frites, sauce fromagère maison.",
     price: 69,
     image: "/images/tacos-indien.webp",
     category: "tacos-signature",
+    badge: "Signature",
   },
   {
     id: "tacos-bourgeois",
     name: "Le Bourgeois",
-    description: "Tortilla, steak haché de bœuf, fromage, frites, sauce fromagère",
+    description: "Steak haché de boeuf, fromage, frites et sauce fromagère.",
     price: 69,
     image: "/images/tacos-bourgeois.webp",
     category: "tacos-signature",
@@ -77,7 +76,7 @@ export const MENU: MenuItem[] = [
   {
     id: "tacos-chevre-miel",
     name: "Le Chèvre Miel",
-    description: "Tortilla, fromage de chèvre, miel, frites, sauce fromagère",
+    description: "Fromage de chèvre, miel, frites et sauce fromagère maison.",
     price: 75,
     image: "/images/tacos-chevre-miel.webp",
     category: "tacos-signature",
@@ -86,7 +85,7 @@ export const MENU: MenuItem[] = [
   {
     id: "tacos-boursin",
     name: "Le Boursin",
-    description: "Tortilla, fromage boursin, poulet ou steak, frites, sauce fromagère",
+    description: "Boursin ail et fines herbes, poulet ou steak, frites, sauce fromagère.",
     price: 69,
     image: "/images/tacos-boursin.webp",
     category: "tacos-signature",
@@ -94,7 +93,7 @@ export const MENU: MenuItem[] = [
   {
     id: "tacos-mythique",
     name: "Le Mythique",
-    description: "Tortilla, combinaison spéciale de viandes, frites, sauce fromagère",
+    description: "Combinaison spéciale de viandes, frites et sauce fromagère.",
     price: 69,
     image: "/images/tacos-mythique.webp",
     category: "tacos-signature",
@@ -103,17 +102,15 @@ export const MENU: MenuItem[] = [
   {
     id: "tacos-parisien",
     name: "Le Parisien",
-    description: "Tortilla, jambon de dinde fumé, fromage, frites, sauce fromagère",
+    description: "Jambon de dinde fumé, fromage, frites et sauce fromagère.",
     price: 69,
     image: "/images/tacos-parisien.webp",
     category: "tacos-signature",
   },
-  // Smash Burgers
   {
     id: "burger-original-smash",
     name: "Original Smash",
-    description:
-      "Pain brioché, steak smashé, fromage, salade, tomate, oignon, cornichon, sauce maison",
+    description: "Pain brioché, steak smashé, fromage, salade, tomate, oignon, cornichon, sauce maison.",
     price: 65,
     image: "/images/burger-original-smash.webp",
     category: "smash",
@@ -122,8 +119,7 @@ export const MENU: MenuItem[] = [
   {
     id: "burger-crispy-smash",
     name: "Crispy Smash",
-    description:
-      "Pain brioché, steak smashé, poulet croustillant pané, fromage, salade, tomate, oignon, cornichon",
+    description: "Steak smashé, poulet croustillant pané, fromage, crudités et sauce maison.",
     price: 69,
     image: "/images/burger-crispy-smash.webp",
     category: "smash",
@@ -131,17 +127,16 @@ export const MENU: MenuItem[] = [
   {
     id: "burger-kentucky",
     name: "Le Kentucky",
-    description:
-      "Pain brioché, steak smashé, poulet façon kentucky épicé, jambon de dinde, fromage, salade, tomate",
+    description: "Steak smashé, poulet façon Kentucky épicé, jambon de dinde, fromage.",
     price: 69,
     image: "/images/burger-kentucky.webp",
     category: "smash",
+    badge: "Spicy",
   },
   {
     id: "burger-new-yorkais",
     name: "Le New Yorkais Boursin",
-    description:
-      "Pain potatoes, steak smashé, sauce boursin ail & fines herbes",
+    description: "Pain potatoes, steak smashé et sauce Boursin ail et fines herbes.",
     price: 69,
     image: "/images/burger-new-yorkais.webp",
     category: "smash",
@@ -149,8 +144,7 @@ export const MENU: MenuItem[] = [
   {
     id: "burger-big-smash",
     name: "Big Smash",
-    description:
-      "Pain brioché, double steak smashé, double fromage, salade, tomate, oignon, cornichon",
+    description: "Double steak smashé, double fromage, salade, tomate, oignon, cornichon.",
     price: 69,
     image: "/images/burger-big-smash.webp",
     category: "smash",
@@ -159,15 +153,15 @@ export const MENU: MenuItem[] = [
   {
     id: "burger-rosti-smash",
     name: "Rösti Smash",
-    description: "Pain brioché, steak smashé, cheddar, salade, tomate, cornichon",
+    description: "Steak smashé, cheddar, rösti, salade, tomate et cornichon.",
     price: 69,
     image: "/images/burger-rosti-smash.webp",
     category: "smash",
   },
-  // Suppléments
   {
     id: "tenders-big",
     name: "Tenders Big x3",
+    description: "Trois tenders dorés, croustillants et généreux.",
     price: 52,
     image: "/images/tenders-big.webp",
     category: "supplements",
@@ -175,13 +169,16 @@ export const MENU: MenuItem[] = [
   {
     id: "cheesy-fries",
     name: "Cheesy Fries",
+    description: "Frites chaudes nappées de fromage fondu.",
     price: 35,
     image: "/images/cheesy-fries.webp",
     category: "supplements",
+    badge: "Cheesy",
   },
   {
     id: "chicken-nuggets",
     name: "Chicken Nuggets x6",
+    description: "Nuggets de poulet croustillants.",
     price: 25,
     image: "/images/chicken-nuggets.webp",
     category: "supplements",
@@ -189,6 +186,7 @@ export const MENU: MenuItem[] = [
   {
     id: "onion-rings",
     name: "Onion Rings x4",
+    description: "Anneaux d'oignon dorés et croustillants.",
     price: 25,
     image: "/images/onion-rings.webp",
     category: "supplements",
@@ -196,6 +194,7 @@ export const MENU: MenuItem[] = [
   {
     id: "frites",
     name: "Frites",
+    description: "Frites chaudes et dorées.",
     price: 15,
     image: "/images/frites.webp",
     category: "supplements",
@@ -203,76 +202,72 @@ export const MENU: MenuItem[] = [
   {
     id: "stick-sauce",
     name: "Stick sauce Nawel's",
-    description: "Algérienne · Biggy · Ketchup · Mayo",
+    description: "Algérienne, Biggy, Ketchup ou Mayo.",
     price: 3,
     image: "/images/supplement-biggy.webp",
     category: "supplements",
   },
-  // Menu Family
   {
     id: "mf-tacos",
     name: "MF Tacos",
-    description:
-      "2 Tacos M + 2 Frites + Boisson 1L + 1 Mini Tacos ou Nuggets + 1 Kinder + 1 Jus",
+    description: "2 Tacos M, 2 frites, boisson 1L, mini tacos ou nuggets, Kinder et jus.",
     price: 110,
-    emoji: "👨‍👩‍👧‍👦",
+    emoji: "family",
     category: "menu-family",
+    badge: "Family",
   },
   {
     id: "mf-smash",
     name: "MF Smash",
-    description:
-      "2 Smash Original + 2 Frites + Boisson 1L + 1 Mini Tacos ou Nuggets + 1 Kinder + 1 Jus",
+    description: "2 Smash Original, 2 frites, boisson 1L, mini tacos ou nuggets, Kinder et jus.",
     price: 130,
-    emoji: "🍔",
+    emoji: "burger",
     category: "menu-family",
   },
   {
     id: "mf-texmex",
     name: "MF Texmex",
-    description:
-      "2 Tex Mex + 2 Frites + Boisson 1L + 1 Mini Tacos ou Nuggets + 1 Kinder + 1 Jus",
+    description: "2 Tex Mex, 2 frites, boisson 1L, mini tacos ou nuggets, Kinder et jus.",
     price: 100,
-    emoji: "🌯",
+    emoji: "texmex",
     category: "menu-family",
   },
-  // Menu Enfant
   {
     id: "menu-enfant",
     name: "Menu Enfant",
-    description:
-      "Mini Tacos OU Mini Cheese OU 4 Nuggets + Frites + Kinder Maxi + Jus",
+    description: "Mini tacos ou mini cheese ou 4 nuggets, frites, Kinder Maxi et jus.",
     price: 30,
-    emoji: "👶",
+    emoji: "kids",
     category: "menu-enfant",
   },
-  // Desserts
   {
     id: "dessert-tiramisu",
     name: "Tiramisu",
+    description: "Crème mascarpone gourmande.",
     price: 18,
-    emoji: "🍰",
+    emoji: "dessert",
     category: "desserts",
   },
   {
     id: "dessert-tarte-daim",
     name: "Tarte Daim",
+    description: "Chocolat, caramel et éclats Daim.",
     price: 20,
-    emoji: "🥧",
+    emoji: "dessert",
     category: "desserts",
   },
   {
     id: "dessert-donuts",
     name: "Donuts",
+    description: "Donut moelleux et sucré.",
     price: 17,
-    emoji: "🍩",
+    emoji: "dessert",
     category: "desserts",
   },
-  // Boissons
   {
     id: "coca-1l",
     name: "Coca Cola 1L",
-    description: "Bouteille",
+    description: "Bouteille fraîche.",
     price: 15,
     image: "/images/bouteille-coca.webp",
     category: "boissons",
@@ -280,7 +275,7 @@ export const MENU: MenuItem[] = [
   {
     id: "coca-33",
     name: "Coca Cola 33cl",
-    description: "Canette",
+    description: "Canette fraîche.",
     price: 9,
     image: "/images/cannette-coca.webp",
     category: "boissons",
@@ -288,6 +283,7 @@ export const MENU: MenuItem[] = [
   {
     id: "eau-1-5",
     name: "Ciel eau 1,5L",
+    description: "Eau minérale.",
     price: 11,
     image: "/images/bouteille-eau.webp",
     category: "boissons",
@@ -295,20 +291,21 @@ export const MENU: MenuItem[] = [
   {
     id: "eau-33",
     name: "Ciel eau 33cl",
+    description: "Petite bouteille.",
     price: 7,
     image: "/images/cannette-eau.webp",
     category: "boissons",
   },
 ];
 
-export const CATEGORY_LABELS: Record<string, { label: string; emoji: string }> = {
-  "tacos-signature": { label: "Tacos Signature", emoji: "🌮" },
-  smash: { label: "Smash Burgers", emoji: "🍔" },
-  supplements: { label: "Suppléments", emoji: "🍟" },
-  "menu-family": { label: "Menu Family", emoji: "👨‍👩‍👧‍👦" },
-  "menu-enfant": { label: "Menu Enfant", emoji: "👶" },
-  desserts: { label: "Desserts", emoji: "🍰" },
-  boissons: { label: "Boissons", emoji: "🥤" },
+export const CATEGORY_LABELS: Record<string, { label: string; short: string }> = {
+  "tacos-signature": { label: "Tacos Signature", short: "Tacos" },
+  smash: { label: "Smash Burgers", short: "Smash" },
+  supplements: { label: "Suppléments", short: "Sides" },
+  "menu-family": { label: "Menu Family", short: "Family" },
+  "menu-enfant": { label: "Menu Enfant", short: "Enfant" },
+  desserts: { label: "Desserts", short: "Desserts" },
+  boissons: { label: "Boissons", short: "Boissons" },
 };
 
 export const CATEGORIES_ORDER = [

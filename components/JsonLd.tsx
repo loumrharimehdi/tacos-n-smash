@@ -7,7 +7,7 @@ const restaurantSchema = {
   name: "Tacos & Smash",
   alternateName: "Tacos and Smash Meknès",
   description:
-    "Restaurant de tacos français et smash burgers à Meknès. Original French Food. ⭐ 4,8/5 sur Google. Livraison, à emporter, sur place.",
+    "Restaurant de tacos français et smash burgers à Meknès. Original French Food. 4,8/5 sur Google. Livraison, à emporter, sur place.",
   url: SITE_URL,
   logo: `${SITE_URL}/images/logo.png`,
   image: [
@@ -16,7 +16,6 @@ const restaurantSchema = {
     `${SITE_URL}/images/tacos-chevre-miel.webp`,
   ],
   telephone: "+212535486148",
-  email: "",
   address: {
     "@type": "PostalAddress",
     streetAddress: "4 Rue El Amal",
@@ -29,12 +28,7 @@ const restaurantSchema = {
     latitude: 33.8947,
     longitude: -5.5473,
   },
-  servesCuisine: [
-    "French Street Food",
-    "Tacos",
-    "Smash Burgers",
-    "Fast Food",
-  ],
+  servesCuisine: ["French Street Food", "Tacos", "Smash Burgers", "Fast Food"],
   priceRange: "MAD 35-130",
   currenciesAccepted: "MAD",
   paymentAccepted: ["Cash"],

@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Confirmation · Tacos & Smash Meknès",
-  description: "Commande confirmée.",
+  description: "Récapitulatif de commande Tacos & Smash et lien WhatsApp.",
   path: "/confirmation",
   noindex: true,
 });

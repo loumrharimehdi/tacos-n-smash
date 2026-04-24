@@ -1,33 +1,39 @@
 import TacosConfigurator from "@/components/TacosConfigurator";
 import { buildMetadata } from "@/lib/seo";
+import StickerPill from "@/components/ui/StickerPill";
 
 export const metadata = buildMetadata({
   title: "Composer mon Tacos · Tacos & Smash Meknès",
   description:
-    "Compose ton tacos sur mesure à Meknès : taille, viandes, sauce. Sauce fromagère maison incluse, frites dedans. Livraison WhatsApp.",
+    "Compose ton tacos sur mesure à Meknès : taille, viandes, sauce, sauce fromagère maison incluse et confirmation WhatsApp.",
   path: "/composer",
 });
 
 export default function ComposerPage() {
   return (
-    <div className="pt-20 sm:pt-24">
-      <section className="relative overflow-hidden border-b border-brand-brown/10 bg-brand-yellow">
-        <div className="absolute inset-0 bg-radial-spot" />
-        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
-          <div className="kicker">🌮 Configurateur</div>
-          <h1 className="mt-4 section-title">
-            Compose ton <span className="text-brand-green">tacos</span>
+    <div className="pt-20">
+      <section className="yellow-paper border-b-[3px] border-brand-brown px-4 py-14 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-7xl text-center">
+          <StickerPill color="green" rotation={-2}>
+            Crée ton tacos
+          </StickerPill>
+          <h1 className="mx-auto mt-6 max-w-4xl font-display text-hero-sm uppercase leading-none text-brand-brown sm:text-hero">
+            Compose
+            <br />
+            <span className="poster-title-orange inline-block">ta bête</span>
           </h1>
-          <p className="mt-4 max-w-xl text-brand-brown/60">
-            Choisis ta taille, ta (ou tes) viande(s) et ta sauce. Sauce fromagère
-            maison et frites incluses.
+          <p className="mx-auto mt-5 max-w-2xl text-base font-bold leading-7 text-brand-brown/74">
+            Choisis la taille, les viandes et la sauce. On s'occupe du reste :
+            sauce fromagère maison, frites et générosité.
           </p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
-        <TacosConfigurator />
-      </div>
+      <section className="food-paper px-4 py-12 sm:px-6 lg:py-16">
+        <div className="mx-auto max-w-7xl">
+          <TacosConfigurator />
+        </div>
+      </section>
     </div>
   );
 }

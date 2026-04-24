@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 export const metadata = buildMetadata({
   title: "Menu · Tacos & Smash Meknès — Carte complète",
   description:
-    "Découvre la carte : tacos français, smash burgers, menus family, suppléments, boissons et desserts. Tous les prix en dirhams.",
+    "Découvrez la carte Tacos & Smash : tacos français, smash burgers, menus family, suppléments, boissons et desserts à Meknès.",
   path: "/menu",
 });
 

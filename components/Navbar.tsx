@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "@/lib/store";
 
@@ -19,77 +19,56 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const count = useCart((s) => s.count());
   const hydrated = useCart((s) => s.hydrated);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const transparent = !scrolled && !open;
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        transparent
-          ? "bg-brand-yellow"
-          : "border-b-2 border-brand-brown bg-brand-yellow shadow-sm"
-      }`}
+    <header
+      className={[
+        "fixed inset-x-0 top-0 z-50 border-b-[3px] border-brand-brown bg-brand-yellow transition-shadow",
+        scrolled ? "shadow-hard" : "",
+      ].join(" ")}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="group flex items-center gap-3"
-          onClick={() => setOpen(false)}
-        >
-          <div className="relative h-10 w-10 overflow-hidden rounded-full bg-brand-cream ring-2 ring-brand-brown transition-transform group-hover:scale-105 sm:h-11 sm:w-11">
-            <Image
-              src="/images/logo.png"
-              alt="Tacos & Smash"
-              fill
-              sizes="44px"
-              className="object-contain p-1"
-              priority
-            />
-          </div>
-          <div className="leading-none">
-            <div className="font-display text-xl tracking-wider text-brand-brown sm:text-2xl">
-              Tacos & Smash
-            </div>
-            <div className="text-[9px] font-semibold uppercase tracking-[0.3em] text-brand-brown/65 sm:text-[10px]">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="group flex items-center gap-3" aria-label="Tacos & Smash accueil">
+          <span className="relative h-14 w-14 shrink-0 rounded-full border-[3px] border-brand-brown bg-brand-cream shadow-hard transition-transform group-hover:-translate-y-0.5">
+            <Image src="/images/logo.png" alt="Logo Tacos & Smash" fill sizes="56px" className="object-contain p-1" priority />
+          </span>
+          <span className="hidden leading-none sm:block">
+            <span className="block font-display text-3xl uppercase text-brand-brown">Tacos & Smash</span>
+            <span className="block text-[10px] font-black uppercase tracking-[0.22em] text-brand-green">
               Original French Food
-            </div>
-          </div>
+            </span>
+          </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((l) => {
-            const active = pathname === l.href;
+        <nav className="hidden items-center gap-2 md:flex" aria-label="Navigation principale">
+          {NAV_LINKS.map((link) => {
+            const active = pathname === link.href;
             return (
               <Link
-                key={l.href}
-                href={l.href}
-                className={`relative rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors ${
-                  active
-                    ? "text-brand-green"
-                    : "text-brand-brown hover:text-brand-green"
-                }`}
+                key={link.href}
+                href={link.href}
+                className={[
+                  "relative rounded-full px-4 py-2 text-sm font-black uppercase tracking-[0.08em] transition-colors",
+                  active ? "text-brand-green" : "text-brand-brown hover:text-brand-green",
+                ].join(" ")}
               >
-                {l.label}
+                {link.label}
                 {active && (
                   <motion.span
-                    layoutId="nav-active"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 -z-10 rounded-full border-2 border-brand-green bg-brand-cream"
+                    layoutId="nav-underline"
+                    className="absolute inset-x-4 -bottom-1 h-1 rounded-full bg-brand-green"
+                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
                   />
                 )}
               </Link>
@@ -97,98 +76,67 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Cart + mobile toggle */}
         <div className="flex items-center gap-2">
           <Link
             href="/order"
-            aria-label="Panier"
-            className="relative inline-flex h-11 items-center gap-2 rounded-full bg-brand-orange px-4 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-brand-orange-dark"
+            className="relative inline-flex min-h-12 items-center gap-2 rounded-full border-[3px] border-brand-brown bg-brand-orange px-4 font-display text-xl uppercase leading-none text-brand-cream shadow-hard transition-transform hover:-translate-y-0.5 sm:px-5"
+            aria-label={`Panier ${hydrated ? count : 0} article${count > 1 ? "s" : ""}`}
           >
-            <ShoppingBag size={16} />
+            <ShoppingCart size={20} />
             <span className="hidden sm:inline">Panier</span>
-            <AnimatePresence>
-              {hydrated && count > 0 && (
-                <motion.span
-                  key={count}
-                  initial={{ scale: 0.6, opacity: 0, y: -4 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  exit={{ scale: 0.6, opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                  className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-green px-1.5 text-[11px] font-black text-white ring-2 ring-brand-yellow"
-                >
-                  {count}
-                </motion.span>
-              )}
-            </AnimatePresence>
+            <span>· {hydrated ? count : 0}</span>
           </Link>
-
           <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand-brown bg-brand-cream text-brand-brown md:hidden"
-            aria-label="Ouvrir le menu"
-            onClick={() => setOpen((v) => !v)}
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border-[3px] border-brand-brown bg-brand-cream text-brand-brown shadow-hard md:hidden"
+            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
+            {open ? <X size={21} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile slide-in */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 z-40 bg-brand-brown/20 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 top-20 z-40 bg-brand-brown/40 md:hidden"
             onClick={() => setOpen(false)}
           >
             <motion.nav
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 280, damping: 30 }}
-              onClick={(e) => e.stopPropagation()}
-              className="ml-auto flex h-[calc(100vh-4rem)] w-full max-w-sm flex-col gap-2 border-l-2 border-brand-brown bg-brand-yellow p-6"
+              initial={{ y: -16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -16, opacity: 0 }}
+              onClick={(event) => event.stopPropagation()}
+              className="mx-3 mt-3 rounded-[18px] border-[3px] border-brand-brown bg-brand-yellow p-4 shadow-hard"
+              aria-label="Navigation mobile"
             >
-              {NAV_LINKS.map((l, i) => {
-                const active = pathname === l.href;
-                return (
-                  <motion.div
-                    key={l.href}
-                    initial={{ x: 40, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.05 + i * 0.06 }}
-                  >
+              <div className="grid gap-3">
+                {NAV_LINKS.map((link) => {
+                  const active = pathname === link.href;
+                  return (
                     <Link
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className={`block rounded-2xl border-2 px-5 py-4 font-display text-2xl uppercase tracking-wider transition-colors ${
+                      key={link.href}
+                      href={link.href}
+                      className={[
+                        "rounded-[14px] border-[3px] border-brand-brown px-5 py-4 font-display text-4xl uppercase leading-none shadow-hard",
                         active
-                          ? "border-brand-brown bg-brand-green text-white"
-                          : "border-brand-brown bg-brand-cream text-brand-brown hover:bg-brand-orange hover:text-white"
-                      }`}
+                          ? "bg-brand-green text-brand-yellow"
+                          : "bg-brand-cream text-brand-brown",
+                      ].join(" ")}
                     >
-                      {l.label}
+                      {link.label}
                     </Link>
-                  </motion.div>
-                );
-              })}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-auto rounded-2xl border-2 border-brand-brown bg-brand-cream p-4 text-sm text-brand-brown"
-              >
-                <div className="font-semibold text-brand-brown">Tacos & Smash</div>
-                <div className="mt-1 text-xs">
-                  4 Rue El Amal, Meknès · Ouvert jusqu'à minuit
-                </div>
-              </motion.div>
+                  );
+                })}
+              </div>
             </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

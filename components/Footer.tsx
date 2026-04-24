@@ -1,130 +1,101 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Facebook, MapPin, Phone, Clock, ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Facebook, Instagram, MapPin, Phone } from "lucide-react";
 import { RESTAURANT } from "@/lib/menu";
+import StreetButton from "@/components/ui/StreetButton";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-brand-brown/10 bg-brand-yellow">
-      <div className="absolute inset-x-0 top-0 divider-gradient" />
-
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] md:py-20">
-        {/* Brand */}
+    <footer className="relative overflow-hidden border-t-[3px] border-brand-brown bg-brand-brown text-brand-cream">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <div>
-          <div className="font-display text-4xl uppercase tracking-wider text-brand-brown sm:text-5xl">
-            Tacos & Smash
+          <div className="flex items-center gap-4">
+            <div className="relative h-16 w-16 rounded-full border-[3px] border-brand-yellow bg-brand-cream shadow-green">
+              <Image src="/images/logo.png" alt="Tacos & Smash" fill sizes="64px" className="object-contain p-1" />
+            </div>
+            <div>
+              <div className="font-display text-4xl uppercase leading-none text-brand-yellow">
+                Tacos & Smash
+              </div>
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-brand-cream/75">
+                Original French Food
+              </div>
+            </div>
           </div>
-          <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-green">
-            Original French Food
-          </div>
-          <p className="mt-6 max-w-sm text-sm text-brand-brown/55">
-            Street food française à {RESTAURANT.city}. Tacos, Smash Burgers,
-            sauce fromagère maison. Commande en ligne, livraison sans contact,
-            cash à la livraison.
+          <p className="mt-5 max-w-sm text-sm font-semibold leading-7 text-brand-cream/78">
+            Street food française à Meknès : tacos généreux, smash burgers, sauce
+            fromagère maison, livraison et confirmation WhatsApp.
           </p>
-
-          <div className="mt-6 flex items-center gap-2">
-            <a
-              href={RESTAURANT.instagram}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-green"
-            >
-              <Instagram size={16} />
+          <div className="mt-5 flex flex-wrap gap-2">
+            <a href={RESTAURANT.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand-yellow bg-brand-yellow text-brand-brown">
+              <Instagram size={17} />
             </a>
-            <a
-              href={RESTAURANT.facebook}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-brown/10 bg-brand-cream/5 text-brand-brown transition-colors hover:border-brand-yellow hover:text-brand-green"
-            >
-              <Facebook size={16} />
+            <a href={RESTAURANT.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand-yellow bg-brand-yellow text-brand-brown">
+              <Facebook size={17} />
             </a>
-            <a
-              href={RESTAURANT.glovo}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#ffc244] px-4 py-2 text-xs font-black uppercase tracking-wider text-black hover:brightness-95"
-            >
-              Glovo <ArrowRight size={12} />
+            <a href={RESTAURANT.glovo} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-brand-yellow bg-brand-cream px-4 text-sm font-black uppercase tracking-[0.08em] text-brand-brown">
+              Glovo <ArrowRight size={14} />
             </a>
           </div>
         </div>
 
-        {/* Contact */}
         <div>
-          <h3 className="kicker">Contact</h3>
-          <ul className="mt-4 space-y-4 text-sm">
-            <li className="flex items-start gap-3">
-              <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
-                <MapPin size={15} />
-              </div>
-              <div>
-                <div className="font-semibold text-brand-brown">{RESTAURANT.address}</div>
-                <div className="text-xs text-brand-brown/65">VCPJ+44 · Meknès</div>
-              </div>
+          <h3 className="font-display text-3xl uppercase text-brand-yellow">Contact</h3>
+          <ul className="mt-4 space-y-4 text-sm font-semibold leading-6 text-brand-cream/84">
+            <li className="flex gap-3">
+              <MapPin className="mt-1 shrink-0 text-brand-yellow" size={18} />
+              <span>{RESTAURANT.address}</span>
             </li>
-            <li className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
-                <Phone size={15} />
-              </div>
-              <a
-                href={`tel:${RESTAURANT.phone.replace(/\s/g, "")}`}
-                className="font-semibold text-brand-brown hover:text-brand-green"
-              >
+            <li className="flex gap-3">
+              <Phone className="mt-1 shrink-0 text-brand-yellow" size={18} />
+              <a href={`tel:${RESTAURANT.phone.replace(/\s/g, "")}`} className="hover:text-brand-yellow">
                 {RESTAURANT.phone}
               </a>
             </li>
-            <li className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-orange text-white">
-                <Clock size={15} />
-              </div>
-              <span className="text-brand-brown/80">{RESTAURANT.hours}</span>
+            <li className="flex gap-3">
+              <Clock className="mt-1 shrink-0 text-brand-yellow" size={18} />
+              <span>{RESTAURANT.hours}</span>
             </li>
           </ul>
         </div>
 
-        {/* Navigation */}
         <div>
-          <h3 className="kicker">Menu</h3>
-          <ul className="mt-4 space-y-2 text-sm">
+          <h3 className="font-display text-3xl uppercase text-brand-yellow">Navigation</h3>
+          <ul className="mt-4 space-y-2 text-sm font-semibold text-brand-cream/84">
             {[
               { href: "/", label: "Accueil" },
-              { href: "/menu", label: "Carte complète" },
+              { href: "/menu", label: "Menu complet" },
               { href: "/composer", label: "Composer mon tacos" },
               { href: "/order", label: "Commander" },
-            ].map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="inline-flex items-center gap-1 text-brand-brown/70 transition-colors hover:text-brand-green"
-                >
-                  <span>{l.label}</span>
-                  <ArrowRight
-                    size={12}
-                    className="opacity-0 -translate-x-1 transition-all group-hover:translate-x-0 group-hover:opacity-100"
-                  />
+            ].map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="inline-flex items-center gap-2 hover:text-brand-yellow">
+                  {link.label} <ArrowRight size={13} />
                 </Link>
               </li>
             ))}
           </ul>
+        </div>
 
-          <div className="mt-6">
-            <Link href="/order" className="btn-yellow text-sm">
-              Commander <ArrowRight size={14} />
-            </Link>
+        <div>
+          <h3 className="font-display text-3xl uppercase text-brand-yellow">Commander</h3>
+          <p className="mt-4 text-sm font-semibold leading-6 text-brand-cream/78">
+            Panier en ligne, validation rapide, paiement cash à la livraison.
+          </p>
+          <div className="mt-5">
+            <StreetButton href="/order" variant="primary" icon={<ArrowRight size={18} />}>
+              Commander
+            </StreetButton>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-brand-brown/10 bg-brand-yellow">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-brand-brown/60 sm:flex-row sm:px-6">
+      <div className="border-t-2 border-brand-yellow/30">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs font-bold text-brand-cream/62 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>© {new Date().getFullYear()} Tacos & Smash — Meknès. Tous droits réservés.</p>
-          <p>
-            ⭐ {RESTAURANT.googleRating.toFixed(1).replace(".", ",")} ·{" "}
-            {RESTAURANT.googleReviews} avis Google
-          </p>
+          <p>4,8 · 220 avis Google · 97% Glovo</p>
         </div>
       </div>
     </footer>

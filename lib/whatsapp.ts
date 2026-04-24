@@ -24,18 +24,15 @@ export function buildOrderMessage(order: OrderPayload): string {
   ];
 
   for (const item of order.items) {
-    const line = `• ${item.name} x${item.quantity} — ${item.price * item.quantity} DH`;
-    lines.push(line);
-    if (item.options) {
-      lines.push(`   └ ${item.options}`);
-    }
+    lines.push(`• ${item.name} x${item.quantity} — ${item.price * item.quantity} DH`);
+    if (item.options) lines.push(`   └ ${item.options}`);
   }
 
   lines.push("");
   lines.push(`💰 *Total : ${order.total} DH*`);
   lines.push("💳 Paiement : Cash à la livraison");
 
-  if (order.notes && order.notes.trim()) {
+  if (order.notes?.trim()) {
     lines.push("");
     lines.push(`📝 Notes : ${order.notes.trim()}`);
   }
@@ -44,13 +41,12 @@ export function buildOrderMessage(order: OrderPayload): string {
 }
 
 export function getWhatsappNumber(): string {
-  const raw =
+  return (
     process.env.NEXT_PUBLIC_WHATSAPP?.replace(/\D/g, "") ||
-    RESTAURANT.whatsapp.replace(/\D/g, "");
-  return raw;
+    RESTAURANT.whatsapp.replace(/\D/g, "")
+  );
 }
 
 export function buildWhatsappUrl(message: string): string {
-  const number = getWhatsappNumber();
-  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${getWhatsappNumber()}?text=${encodeURIComponent(message)}`;
 }

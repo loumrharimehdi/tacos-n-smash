@@ -9,25 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Legacy `ink` palette remapped to warm tones so existing
-        // `bg-ink-*` / `ring-offset-ink-*` utilities inherit the new look.
         ink: {
           900: "#FFC72C",
           800: "#FFF8E7",
           700: "#FFF8E7",
-          600: "#FFEFC2",
+          600: "#FFF0C9",
         },
         brand: {
           yellow: "#FFC72C",
-          "yellow-dark": "#E6B020",
-          "yellow-light": "#FFD65A",
-          brown: "#4A2818",
-          "brown-dark": "#2E180E",
-          black: "#4A2818",
+          "yellow-soft": "#FFD95F",
           green: "#1B5E3F",
-          "green-dark": "#144A31",
+          "green-dark": "#12472E",
+          brown: "#4A2818",
+          "brown-dark": "#32180E",
           orange: "#FF6B35",
-          "orange-dark": "#E65A28",
+          "orange-dark": "#DF5425",
           cream: "#FFF8E7",
         },
         paper: "#FFF8E7",
@@ -37,62 +33,39 @@ const config: Config = {
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        mega: ["clamp(4.5rem, 14vw, 10rem)", { lineHeight: "0.9", letterSpacing: "-0.02em" }],
-        hero: ["clamp(3rem, 9vw, 6.25rem)", { lineHeight: "0.95", letterSpacing: "-0.01em" }],
-        section: ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1", letterSpacing: "-0.01em" }],
+        hero: ["8rem", { lineHeight: "0.82", letterSpacing: "0" }],
+        "hero-sm": ["4.75rem", { lineHeight: "0.86", letterSpacing: "0" }],
+        section: ["4.5rem", { lineHeight: "0.92", letterSpacing: "0" }],
+        "section-sm": ["3rem", { lineHeight: "0.96", letterSpacing: "0" }],
       },
       boxShadow: {
-        brand: "0 10px 30px -12px rgba(74,40,24,0.25)",
-        glow: "0 8px 20px -8px rgba(74,40,24,0.25)",
-        "glow-lg": "0 14px 30px -12px rgba(74,40,24,0.35)",
-        card: "0 6px 16px -8px rgba(74,40,24,0.2)",
-      },
-      backgroundImage: {
-        "radial-spot":
-          "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.25), transparent 60%)",
-        "sep-gradient":
-          "linear-gradient(90deg, transparent, rgba(74,40,24,0.4), transparent)",
+        hard: "4px 4px 0 #4A2818",
+        "hard-lg": "8px 8px 0 #4A2818",
+        green: "5px 5px 0 #1B5E3F",
+        "green-lg": "9px 9px 0 #1B5E3F",
+        orange: "5px 5px 0 #FF6B35",
+        "inner-ticket": "inset 0 0 0 2px rgba(74,40,24,0.08)",
+        card: "4px 4px 0 #1B5E3F",
       },
       keyframes: {
-        pulseGlow: {
-          "0%, 100%": {
-            boxShadow:
-              "0 0 0 0 rgba(27,94,63,0.55), 0 0 0 0 rgba(27,94,63,0.35)",
-          },
-          "50%": {
-            boxShadow:
-              "0 0 0 14px rgba(27,94,63,0), 0 0 0 28px rgba(27,94,63,0)",
-          },
-        },
-        pulseYellow: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(255,107,53,0.55)" },
-          "50%": { boxShadow: "0 0 0 18px rgba(255,107,53,0)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        floatSlow: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-8px)" },
-        },
-        scrollHint: {
-          "0%": { transform: "translateY(-4px)", opacity: "0.2" },
-          "50%": { opacity: "1" },
-          "100%": { transform: "translateY(12px)", opacity: "0" },
-        },
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        whatsappPulse: {
+          "0%, 72%, 100%": { transform: "scale(1)" },
+          "82%": { transform: "scale(1.08)" },
+          "92%": { transform: "scale(1)" },
+        },
+        floatFood: {
+          "0%, 100%": { transform: "translateY(0) rotate(-1deg)" },
+          "50%": { transform: "translateY(-10px) rotate(1deg)" },
+        },
       },
       animation: {
-        "pulse-glow": "pulseGlow 2.4s ease-out infinite",
-        "pulse-yellow": "pulseYellow 2.4s ease-out infinite",
-        shimmer: "shimmer 2.5s linear infinite",
-        "float-slow": "floatSlow 4s ease-in-out infinite",
-        "scroll-hint": "scrollHint 1.8s ease-in-out infinite",
-        marquee: "marquee 30s linear infinite",
+        marquee: "marquee 35s linear infinite",
+        "whatsapp-pulse": "whatsappPulse 3s ease-in-out infinite",
+        "float-food": "floatFood 5s ease-in-out infinite",
       },
     },
   },
