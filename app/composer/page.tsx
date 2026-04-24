@@ -1,4 +1,5 @@
 import TacosConfigurator from "@/components/TacosConfigurator";
+import { CartTotalLink } from "@/components/CartSummary";
 import { buildMetadata } from "@/lib/seo";
 import StickerPill from "@/components/ui/StickerPill";
 
@@ -34,6 +35,7 @@ export default function ComposerPage() {
           <TacosConfigurator />
         </div>
       </section>
+      <CartTotalLink />
     </div>
   );
 }

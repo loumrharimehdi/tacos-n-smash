@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { Flame, Search, ShoppingBag } from "lucide-react";
+import { Flame, Search, ShoppingBag, X } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import CartSummary, { CartTotalLink } from "@/components/CartSummary";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -12,13 +12,35 @@ import DecorativePalm from "@/components/ui/DecorativePalm";
 import { CATEGORIES_ORDER, CATEGORY_LABELS, MENU } from "@/lib/menu";
 import type { Category } from "@/lib/types";
 
-type ActiveCategory = Category | "all";
+function normalize(value: string) {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "");
+}
 
 export default function MenuPage() {
-  const [active, setActive] = useState<ActiveCategory>("all");
+  const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<Category>(CATEGORIES_ORDER[0]);
+  const sectionRefs = useRef<Record<Category, HTMLElement | null>>({
+    "tacos-signature": null,
+    smash: null,
+    supplements: null,
+    "menu-family": null,
+    "menu-enfant": null,
+    desserts: null,
+    boissons: null,
+  });
 
   const grouped = useMemo(() => {
-    const filtered = active === "all" ? MENU : MENU.filter((item) => item.category === active);
+    const q = normalize(query.trim());
+    const filtered = q
+      ? MENU.filter(
+          (item) =>
+            normalize(item.name).includes(q) ||
+            (item.description && normalize(item.description).includes(q)),
+        )
+      : MENU;
     return filtered.reduce<Record<Category, typeof MENU>>(
       (acc, item) => {
         acc[item.category].push(item);
@@ -34,7 +56,45 @@ export default function MenuPage() {
         boissons: [],
       },
     );
-  }, [active]);
+  }, [query]);
+
+  const visibleCategories = useMemo(
+    () => CATEGORIES_ORDER.filter((cat) => grouped[cat].length > 0),
+    [grouped],
+  );
+
+  // Scroll-spy: tab actif selon la section visible
+  useEffect(() => {
+    if (visibleCategories.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) {
+          setActiveCategory(visible[0].target.id as Category);
+        }
+      },
+      { rootMargin: "-160px 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    visibleCategories.forEach((cat) => {
+      const el = sectionRefs.current[cat];
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [visibleCategories]);
+
+  function scrollToCategory(category: Category) {
+    const el = sectionRefs.current[category];
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 150;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  const totalResults = visibleCategories.reduce(
+    (sum, cat) => sum + grouped[cat].length,
+    0,
+  );
 
   return (
     <div className="pt-20">
@@ -73,37 +133,60 @@ export default function MenuPage() {
       </section>
 
       <div className="sticky top-20 z-30 border-b-[3px] border-brand-brown bg-brand-green">
-        <div className="mx-auto max-w-7xl overflow-x-auto px-4 no-scrollbar sm:px-6">
-          <div className="flex min-w-max items-center gap-2 py-3">
-            <button
-              type="button"
-              onClick={() => setActive("all")}
-              aria-pressed={active === "all"}
-              className={[
-                "rounded-full border-2 border-brand-brown px-4 py-2 text-xs font-black uppercase tracking-[0.12em] shadow-hard transition-transform hover:-translate-y-0.5",
-                active === "all" ? "bg-brand-orange text-brand-cream" : "bg-brand-cream text-brand-brown",
-              ].join(" ")}
-            >
-              Tout
-            </button>
-            {CATEGORIES_ORDER.map((category) => {
-              const selected = active === category;
-              const info = CATEGORY_LABELS[category];
-              return (
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <div className="flex items-center gap-3 py-3">
+            <div className="relative flex-1 min-w-0">
+              <Search
+                size={16}
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-brand-brown/60"
+                aria-hidden
+              />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Rechercher un tacos, un burger..."
+                aria-label="Rechercher un plat"
+                className="w-full rounded-full border-2 border-brand-brown bg-brand-cream py-2 pl-9 pr-10 text-sm font-bold text-brand-brown placeholder:text-brand-brown/50 shadow-hard focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+              />
+              {query && (
                 <button
-                  key={category}
                   type="button"
-                  onClick={() => setActive(category)}
-                  aria-pressed={selected}
-                  className={[
-                    "rounded-full border-2 border-brand-brown px-4 py-2 text-xs font-black uppercase tracking-[0.12em] shadow-hard transition-transform hover:-translate-y-0.5",
-                    selected ? "bg-brand-yellow text-brand-brown" : "bg-brand-cream text-brand-brown",
-                  ].join(" ")}
+                  onClick={() => setQuery("")}
+                  aria-label="Effacer la recherche"
+                  className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-brand-brown hover:bg-brand-orange hover:text-brand-cream"
                 >
-                  {info.short}
+                  <X size={14} />
                 </button>
-              );
-            })}
+              )}
+            </div>
+          </div>
+          <div className="overflow-x-auto no-scrollbar">
+            <div className="flex min-w-max items-center gap-2 pb-3">
+              {CATEGORIES_ORDER.map((category) => {
+                const info = CATEGORY_LABELS[category];
+                const selected = activeCategory === category;
+                const disabled = grouped[category].length === 0;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => scrollToCategory(category)}
+                    aria-current={selected ? "true" : undefined}
+                    disabled={disabled}
+                    className={[
+                      "rounded-full border-2 border-brand-brown px-4 py-2 text-xs font-black uppercase tracking-[0.12em] shadow-hard transition-transform hover:-translate-y-0.5",
+                      selected
+                        ? "bg-brand-yellow text-brand-brown"
+                        : "bg-brand-cream text-brand-brown",
+                      disabled ? "opacity-40 cursor-not-allowed" : "",
+                    ].join(" ")}
+                  >
+                    {info.short}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -111,10 +194,37 @@ export default function MenuPage() {
       <div className="food-paper px-4 py-12 sm:px-6 lg:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_360px]">
           <main className="space-y-16">
-            {CATEGORIES_ORDER.filter((category) => grouped[category].length > 0).map((category) => {
+            {totalResults === 0 && (
+              <div className="card flex flex-col items-center gap-4 p-8 text-center">
+                <Search size={36} className="text-brand-brown/40" aria-hidden />
+                <div>
+                  <h2 className="font-display text-4xl uppercase leading-none">
+                    Aucun résultat
+                  </h2>
+                  <p className="mt-2 text-sm font-semibold text-brand-brown/70">
+                    Essaie un autre mot ou parcours toutes les catégories.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="rounded-full border-2 border-brand-brown bg-brand-orange px-5 py-2 text-xs font-black uppercase tracking-[0.12em] text-brand-cream shadow-hard"
+                >
+                  Effacer la recherche
+                </button>
+              </div>
+            )}
+            {visibleCategories.map((category) => {
               const info = CATEGORY_LABELS[category];
               return (
-                <section key={category} id={category} className="scroll-mt-36">
+                <section
+                  key={category}
+                  id={category}
+                  ref={(el) => {
+                    sectionRefs.current[category] = el;
+                  }}
+                  className="scroll-mt-40"
+                >
                   <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                     <SectionHeader
                       eyebrow={`${grouped[category].length} produits`}
@@ -139,7 +249,7 @@ export default function MenuPage() {
           </main>
 
           <aside className="hidden lg:block">
-            <div className="sticky top-36 space-y-5">
+            <div className="sticky top-44 space-y-5">
               <CartSummary compact />
               <div className="rounded-[18px] border-[3px] border-brand-brown bg-brand-green p-5 text-brand-cream shadow-hard">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand-brown bg-brand-yellow text-brand-brown shadow-hard">
